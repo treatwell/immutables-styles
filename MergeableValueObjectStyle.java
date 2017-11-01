@@ -13,7 +13,7 @@ import com.treatwell.common.utils.object.Mergeable;
 /**
  * Style that should only be used on objects that are implementing the {@link Mergeable}
  * interface, and are those which should be treated almost exactly the same as the
- * {@link `}, except that non-strict builders are generated, so that we can
+ * {@link ValueObjectStyle}, except that non-strict builders are generated, so that we can
  * use from() methods during the merge logic:
  *
  * <code><pre>
