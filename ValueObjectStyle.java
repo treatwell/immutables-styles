@@ -2,6 +2,8 @@ package com.treatwell.common.utils.immutables;
 
 import static org.immutables.value.Value.Style.ImplementationVisibility.PUBLIC;
 
+import javax.persistence.Access;
+
 import org.immutables.value.Value.Style;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -64,7 +66,7 @@ import com.treatwell.common.utils.identity.IdentitySequence;
         // We allow some specific annotations to be passed through when provided on the abstract
         // class/interface, as they may be required on the underlying single public final implementation
         passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class,
-                JsonSerialize.class, IdentitySequence.class},
+                JsonSerialize.class, IdentitySequence.class, Access.class },
         // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
         // so we enforce the use of strict builders for our value objects (with the exception of
         // Mergeable implementations, which should use the MergeableValueObjectStyle).
