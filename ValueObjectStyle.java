@@ -74,5 +74,6 @@ import com.treatwell.common.utils.identity.IdentitySequence;
         // Ensure Guava collections are not used, since Spring converters do not support them
         jdkOnly = true
 )
+@JsonSerialize // Triggers Jackson integration on all users.
 public @interface ValueObjectStyle {
 }

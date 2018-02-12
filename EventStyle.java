@@ -7,6 +7,7 @@ import org.immutables.value.Value.Style;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.treatwell.common.utils.identity.IdentitySequence;
 
 /**
@@ -45,5 +46,6 @@ import com.treatwell.common.utils.identity.IdentitySequence;
     // so we enforce the use of strict builders for our event objects.
     strictBuilder = true
 )
+@JsonSerialize // Triggers Jackson integration on all users.
 public @interface EventStyle {
 }
