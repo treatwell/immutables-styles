@@ -7,7 +7,6 @@ import org.immutables.value.Value.Style;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.treatwell.common.utils.identity.IdentitySequence;
 
 /**
@@ -46,6 +45,16 @@ import com.treatwell.common.utils.identity.IdentitySequence;
     // so we enforce the use of strict builders for our event objects.
     strictBuilder = true
 )
-@JsonSerialize // Triggers Jackson integration on all users.
+// We do NOT want to trigger Jackson serialization on event classes or else the id + occurredAt fields
+// are rebuilt to all new values during unmarshalling and then not preserved. One problem here is that
+// if people will have made Event classes but unwittingly marked them with Jackson annotations which will
+// then apply usual builder constraints during unmarshalling, but would reset id and occurredAt properties.
+// Happily to date, this hasn't happened.
+//
+// Options to enable this are:
+// 1. Mark the getters on DomainEvent as @Default rather than @Derived, but this allows clients to set
+//    them manually in the builder, which we would rather not permit, as it's more likely to go wrong.
+// 2. Wait for https://github.com/immutables/immutables/issues/690 to be fixed (or do it ourselves)
+// @JsonSerialize
 public @interface EventStyle {
 }
