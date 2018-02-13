@@ -74,8 +74,6 @@ import com.treatwell.common.utils.identity.IdentitySequence;
         // Ensure Guava collections are not used, since Spring converters do not support them
         jdkOnly = true
 )
-// FIXME: Disabling this for 224 as the blanket change caused a few regressions, so we'll re-enable
-// it as soon as master becomes 225.
-// @JsonSerialize // Triggers Jackson integration on all users.
+@JsonSerialize // Triggers Jackson integration on all users.
 public @interface ValueObjectStyle {
 }

@@ -7,6 +7,7 @@ import org.immutables.value.Value.Style;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.treatwell.common.utils.identity.IdentitySequence;
 import com.treatwell.common.utils.object.Mergeable;
 
@@ -53,8 +54,6 @@ import com.treatwell.common.utils.object.Mergeable;
         // we must disable strict builders.
         strictBuilder = false
 )
-// FIXME: Disabling this for 224 as the blanket change caused a few regressions, so we'll re-enable
-// it as soon as master becomes 225.
-// @JsonSerialize // Triggers Jackson integration on all users.
+@JsonSerialize // Triggers Jackson integration on all users.
 public @interface MergeableValueObjectStyle {
 }
