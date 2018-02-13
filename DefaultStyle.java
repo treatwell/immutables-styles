@@ -5,7 +5,6 @@ import org.immutables.value.Value.Style;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.treatwell.common.utils.identity.IdentitySequence;
 
 /**
@@ -65,6 +64,9 @@ import com.treatwell.common.utils.identity.IdentitySequence;
         // so we enforce the use of strict builders for our immutable objects.
         strictBuilder = true
 )
-@JsonSerialize // Triggers Jackson integration on all users.
+// FIXME: We cannot just turn this on as it breaks at least the immutable version of the supplier TreatmentService
+// which relied on the field-level Jackson injection bypassing all the builders to cut down on the marshalled size
+// of services which didn't need half the fields. @Balys is raising a bug to fix that use specifically.
+// @JsonSerialize // Triggers Jackson integration on all users.
 public @interface DefaultStyle {
 }
