@@ -2,6 +2,8 @@ package com.treatwell.common.utils.immutables;
 
 import static org.immutables.value.Value.Style.ImplementationVisibility.PUBLIC;
 
+import javax.persistence.Access;
+
 import org.immutables.value.Value.Style;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,7 +14,8 @@ import com.treatwell.common.utils.identity.IdentitySequence;
 import com.treatwell.common.utils.object.Mergeable;
 
 /**
- * Style that should only be used on objects that are implementing the {@link Mergeable}
+ * Style only to be used on objects which require non-strict builders for some specific (and documented!)
+ * reason. One particular use-case is on objects that are implementing the {@link Mergeable}
  * interface, and are those which should be treated almost exactly the same as the
  * {@link ValueObjectStyle}, except that non-strict builders are generated, so that we can
  * use from() methods during the merge logic:
@@ -49,11 +52,14 @@ import com.treatwell.common.utils.object.Mergeable;
         privateNoargConstructor = true, // allow hibernate etc. to instantiate immutables
         // We allow some specific annotations to be passed through when provided on the abstract
         // class/interface, as they may be required on the underlying single public final implementation
-        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, IdentitySequence.class},
-        // For Mergeable implementations, we want to allow the use of the from() builder method, and thus
-        // we must disable strict builders.
-        strictBuilder = false
+        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class,
+                JsonSerialize.class, IdentitySequence.class, Access.class },
+        // We disable strict builders here
+        strictBuilder = false,
+        // Ensure Guava collections are not used, since Spring converters do not support them
+        jdkOnly = true
+
 )
 @JsonSerialize // Triggers Jackson integration on all users.
-public @interface MergeableValueObjectStyle {
+public @interface NonStrictValueObjectStyle {
 }

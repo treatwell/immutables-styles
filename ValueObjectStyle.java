@@ -45,7 +45,7 @@ import com.treatwell.common.utils.identity.IdentitySequence;
  * </pre></code>
  *
  * Changes to this object (other than builder strictness), should also be applied to
- * the {@link MergeableValueObjectStyle} configuration.
+ * the {@link NonStrictValueObjectStyle} configuration.
  */
 @Style(
         // A. Properties defining how clients use the Immutables
