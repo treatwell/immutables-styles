@@ -43,7 +43,11 @@ import com.treatwell.common.utils.identity.IdentitySequence;
     passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, IdentitySequence.class},
     // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
     // so we enforce the use of strict builders for our event objects.
-    strictBuilder = true
+    strictBuilder = true //,
+    // DISABLED FOR THE MOMENT ... - SEE BELOW
+    // We will let Jackson work its normal magic to compute property names, which also provides us the flexibility
+    // to go and override them more easily when we want to.
+    // forceJacksonPropertyNames = false
 )
 // We do NOT want to trigger Jackson serialization on event classes or else the id + occurredAt fields
 // are rebuilt to all new values during unmarshalling and then not preserved. One problem here is that

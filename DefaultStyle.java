@@ -63,7 +63,10 @@ import com.treatwell.common.utils.identity.IdentitySequence;
         passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, IdentitySequence.class},
         // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
         // so we enforce the use of strict builders for our immutable objects.
-        strictBuilder = true
+        strictBuilder = true,
+        // We will let Jackson work its normal magic to compute property names, which also provides us the flexibility
+        // to go and override them more easily when we want to.
+        forceJacksonPropertyNames = false
 )
 @JsonSerialize // Triggers Jackson integration on all users.
 public @interface DefaultStyle {

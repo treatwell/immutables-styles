@@ -11,7 +11,10 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  */
 @Value.Style(
     // Generate Java bean like setters (void return type)
-    beanFriendlyModifiables = true
+    beanFriendlyModifiables = true,
+    // We will let Jackson work its normal magic to compute property names, which also provides us the flexibility
+    // to go and override them more easily when we want to.
+    forceJacksonPropertyNames = false
 )
 @JsonSerialize // Triggers Jackson integration on all users.
 public @interface JavaBeanStyle {

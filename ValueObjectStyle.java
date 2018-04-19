@@ -72,7 +72,10 @@ import com.treatwell.common.utils.identity.IdentitySequence;
         // Mergeable implementations, which should use the MergeableValueObjectStyle).
         strictBuilder = true,
         // Ensure Guava collections are not used, since Spring converters do not support them
-        jdkOnly = true
+        jdkOnly = true,
+        // We will let Jackson work its normal magic to compute property names, which also provides us the flexibility
+        // to go and override them more easily when we want to.
+        forceJacksonPropertyNames = false
 )
 @JsonSerialize // Triggers Jackson integration on all users.
 public @interface ValueObjectStyle {
