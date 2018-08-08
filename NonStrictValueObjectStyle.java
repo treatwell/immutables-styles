@@ -11,28 +11,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.treatwell.common.utils.identity.IdentitySequence;
-import com.treatwell.common.utils.object.Mergeable;
 
 /**
  * Style only to be used on objects which require non-strict builders for some specific (and documented!)
- * reason. One particular use-case is on objects that are implementing the {@link Mergeable}
- * interface, and are those which should be treated almost exactly the same as the
- * {@link ValueObjectStyle}, except that non-strict builders are generated, so that we can
- * use from() methods during the merge logic:
- *
- * <code><pre>
- * public OnlineBookingDefaults merge(OnlineBookingDefaults overrides) {
- *     if (overrides == null) {
- *         return OnlineBookingDefaults.copyOf(this);
- *     }
- *     return OnlineBookingDefaults.builder()
- *             .from(this)
- *             .from(overrides).build();
- * }
- * </pre></code>
- *
- * All the other uses described in the {@link ValueObjectStyle} still apply. Any changes
- * made there, should be applied here as well.
+ * reason.
  */
 @Style(
         // A. Properties defining how clients use the Immutables
