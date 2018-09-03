@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.treatwell.common.utils.identity.IdentitySequence;
 
 /**
  * This defines the default style that we use for all our Immutable classes within the
@@ -60,7 +59,7 @@ import com.treatwell.common.utils.identity.IdentitySequence;
         privateNoargConstructor = true,
         // We allow some specific annotations to be passed through when provided on the abstract
         // class/interface, as they may be required on the underlying single public final implementation
-        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, IdentitySequence.class},
+        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class},
         // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
         // so we enforce the use of strict builders for our immutable objects.
         strictBuilder = true,

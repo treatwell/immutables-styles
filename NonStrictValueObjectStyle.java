@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.treatwell.common.utils.identity.IdentitySequence;
 
 /**
  * Style only to be used on objects which require non-strict builders for some specific (and documented!)
@@ -52,7 +51,7 @@ import com.treatwell.common.utils.identity.IdentitySequence;
         // We allow some specific annotations to be passed through when provided on the abstract
         // class/interface, as they may be required on the underlying single public final implementation
         passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class,
-                JsonSerialize.class, IdentitySequence.class, Access.class },
+                JsonSerialize.class, Access.class },
         // We disable strict builders here
         strictBuilder = false,
         // Ensure Guava collections are not used, since Spring converters do not support them

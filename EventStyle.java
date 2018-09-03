@@ -7,7 +7,6 @@ import org.immutables.value.Value.Style;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.treatwell.common.utils.identity.IdentitySequence;
 
 /**
  * A style designed to be used to define classes that hold information about domain Events that have
@@ -40,7 +39,7 @@ import com.treatwell.common.utils.identity.IdentitySequence;
     privateNoargConstructor = true, // allow hibernate etc. to instantiate immutables
     // We allow some specific annotations to be passed through when provided on the abstract
     // class/interface, as they may be required on the underlying single public final implementation
-    passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, IdentitySequence.class},
+    passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class},
     // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
     // so we enforce the use of strict builders for our event objects.
     strictBuilder = true //,

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.treatwell.common.utils.identity.IdentitySequence;
 
 /**
  * Immutables {@link Style} to define value-object classes; that is, classes with a single
@@ -66,7 +65,7 @@ import com.treatwell.common.utils.identity.IdentitySequence;
         // We allow some specific annotations to be passed through when provided on the abstract
         // class/interface, as they may be required on the underlying single public final implementation
         passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class,
-                JsonSerialize.class, IdentitySequence.class, Access.class },
+                JsonSerialize.class, Access.class },
         // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
         // so we enforce the use of strict builders for our value objects (with the exception of
         // Mergeable implementations, which should use the MergeableValueObjectStyle).
