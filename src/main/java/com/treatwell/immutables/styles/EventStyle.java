@@ -1,4 +1,4 @@
-package com.treatwell.common.utils.immutables;
+package com.treatwell.immutables.styles;
 
 import static org.immutables.value.Value.Style.ImplementationVisibility.PUBLIC;
 

@@ -1,4 +1,4 @@
-package com.treatwell.common.utils.immutables;
+package com.treatwell.immutables.styles;
 
 import static org.immutables.value.Value.Style.ImplementationVisibility.PUBLIC;
 
@@ -12,25 +12,39 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
- * Style only to be used on objects which require non-strict builders for some specific (and documented!)
- * reason. One particular use-case is on objects that need to be merged with another instance of the same class,
- * and are those which should be treated almost exactly the same as the
- * {@link ValueObjectStyle}, except that non-strict builders are generated, so that we can
- * use from() methods during the merge logic:
+ * Immutables {@link Style} to define value-object classes; that is, classes with a single
+ * implementation on which all the fields are immutable. This style means that you define:
  *
  * <code><pre>
- * public OnlineBookingDefaults merge(OnlineBookingDefaults overrides) {
- *     if (overrides == null) {
- *         return OnlineBookingDefaults.copyOf(this);
- *     }
- *     return OnlineBookingDefaults.builder()
- *             .from(this)
- *             .from(overrides).build();
- * }
+ * /* package * / abstract class AbstractValueObject {
+ *     Long getId();
+ *     @Nullable getName();
+ *     boolean isFlagged();
+ * }</pre></code>
+ *
+ * from which a single public implementation class ({@code ValueObject}) will be defined:
+ *
+ * <code><pre>
+ * public final class ValueObject extends AbstractValueObject {
+ *     Long getId() {...}
+ *     @Nullable getName() {...}
+ *     boolean isFlagged() {...}
+ *
+ *     public static ValueObject.Builder builder();
+ * }</pre></code>
+ *
+ * which is then created via:
+ *
+ * <code><pre>
+ * ValueObject vo = ValueObject.builder()
+ *     .id(1234L)
+ *     .name("Steve Storey")
+ *     .flagged(false)
+ *     .build();
  * </pre></code>
  *
- * All the other uses described in the {@link ValueObjectStyle} still apply. Any changes
- * made there, should be applied here as well.
+ * Changes to this object (other than builder strictness), should also be applied to
+ * the {@link NonStrictValueObjectStyle} configuration.
  */
 @Style(
         // A. Properties defining how clients use the Immutables
@@ -52,15 +66,16 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
         // class/interface, as they may be required on the underlying single public final implementation
         passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class,
                 JsonSerialize.class, Access.class },
-        // We disable strict builders here
-        strictBuilder = false,
+        // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
+        // so we enforce the use of strict builders for our value objects (with the exception of
+        // Mergeable implementations, which should use the MergeableValueObjectStyle).
+        strictBuilder = true,
         // Ensure Guava collections are not used, since Spring converters do not support them
         jdkOnly = true,
         // We will let Jackson work its normal magic to compute property names, which also provides us the flexibility
         // to go and override them more easily when we want to.
         forceJacksonPropertyNames = false
-
 )
 @JsonSerialize // Triggers Jackson integration on all users.
-public @interface NonStrictValueObjectStyle {
+public @interface ValueObjectStyle {
 }

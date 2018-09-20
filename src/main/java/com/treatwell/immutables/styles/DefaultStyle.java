@@ -1,4 +1,4 @@
-package com.treatwell.common.utils.immutables;
+package com.treatwell.immutables.styles;
 
 import org.immutables.value.Value.Style;
 
