@@ -15,13 +15,16 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * Immutables {@link Style} to define value-object classes; that is, classes with a single
  * implementation on which all the fields are immutable. This style means that you define:
  *
- * <code><pre>
+ * <pre>
+ * {@code
  * /* package * / abstract class AbstractValueObject {
  *     Long getId();
  *     @Nullable getName();
  *     boolean isFlagged();
- * }</pre></code>
- *
+ * }
+ * }
+ * </pre>
+ * <p>
  * from which a single public implementation class ({@code ValueObject}) will be defined:
  *
  * <code><pre>
@@ -32,7 +35,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  *
  *     public static ValueObject.Builder builder();
  * }</pre></code>
- *
+ * <p>
  * which is then created via:
  *
  * <code><pre>
@@ -42,7 +45,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  *     .flagged(false)
  *     .build();
  * </pre></code>
- *
+ * <p>
  * Changes to this object (other than builder strictness), should also be applied to
  * the {@link NonStrictValueObjectStyle} configuration.
  */
@@ -64,8 +67,10 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
         privateNoargConstructor = true, // allow hibernate etc. to instantiate immutables
         // We allow some specific annotations to be passed through when provided on the abstract
         // class/interface, as they may be required on the underlying single public final implementation
-        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class,
-                JsonSerialize.class, Access.class },
+        passAnnotations = {
+                JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class,
+                JsonSerialize.class, Access.class
+        },
         // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
         // so we enforce the use of strict builders for our value objects (with the exception of
         // Mergeable implementations, which should use the MergeableValueObjectStyle).
@@ -78,4 +83,5 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 )
 @JsonSerialize // Triggers Jackson integration on all users.
 public @interface ValueObjectStyle {
+
 }

@@ -12,13 +12,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * A style designed to be used to define classes that hold information about domain Events that have
  * occurred. An event class can be defined of the form:
  *
- * <code><pre>
+ * <pre>{@code
  * @Value.Immutable
  * abstract class VenuePublished extends DomainEvent {
  *     private static final long serialVersionUID = 1L;
  *     String getName();
  * }
- * </pre></code>
+ * }</pre>
  *
  * which will cause an event class of {@code VenuePublishedEvent} to be generated to hold the actual
  * event information, and be sent over the wire (and possibly via RabbitMQ etc.)

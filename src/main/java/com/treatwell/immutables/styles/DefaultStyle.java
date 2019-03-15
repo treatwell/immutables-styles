@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * Treatwell code. In particular, this allows for immutable objects to be used as the actual
  * DTO objects for a given service API. For example, we can define an API of:
  *
- * <code><pre>
+ * <pre>{@code
  * public interface VenueService {
  *     Venue findById(VenueId id);
  * }
@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  *     String getName();
  *     List<SomethingElse> getOtherProperty();
  * }
- * </pre></code>
+ * }</pre>
  *
  * where the service implementation loads some data, and then converts it to an {@code ImmutableVenue}
  * either because the domain-class implements the Venue interface (e.g. {@code return ImmutableVenue.copyOf(domainVenue);}
