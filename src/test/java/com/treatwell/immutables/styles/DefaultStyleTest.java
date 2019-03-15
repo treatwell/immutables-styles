@@ -1,9 +1,8 @@
 package com.treatwell.immutables.styles;
 
-import static com.treatwell.immutables.styles.features.StyleFeatures.CAN_PASS_NULL_FOR_OPTIONAL_FIELD;
-import static com.treatwell.immutables.styles.features.StyleFeatures.HAS_PRIVATE_NO_ARG_CONSTRUCTOR;
-import static com.treatwell.immutables.styles.features.StyleFeatures.RECOGNIZES_BOOLEAN_GETTERS;
-import static com.treatwell.immutables.styles.features.StyleFeatures.SERIALIZABLE_BY_JACKSON;
+import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.HAS_PRIVATE_NO_ARG_CONSTRUCTOR;
+import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.RECOGNIZES_BOOLEAN_GETTERS;
+import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.SERIALIZABLE_BY_JACKSON;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -11,6 +10,7 @@ import java.util.Optional;
 import org.immutables.value.Value.Immutable;
 import org.junit.runners.Parameterized.Parameters;
 
+import com.treatwell.immutables.styles.features.CanPassNullForOptionalEmptyInBuilder;
 import com.treatwell.immutables.styles.features.StyleFeature;
 
 public class DefaultStyleTest extends StyleFeaturesTest {
@@ -52,7 +52,7 @@ public class DefaultStyleTest extends StyleFeaturesTest {
 
     private static StyleFeature optionalPassNullFeature() {
         final ImmutableDefaultStyleBased.Builder builder = ImmutableDefaultStyleBased.builder().something(true);
-        return CAN_PASS_NULL_FOR_OPTIONAL_FIELD.apply(
+        return new CanPassNullForOptionalEmptyInBuilder(
                 builder::optionalString,
                 () -> builder.build().getOptionalString()
         );

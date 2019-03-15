@@ -6,12 +6,12 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class CanPassNullForOptionalFieldInBuilder implements ComplexStyleFeature {
+public class CanPassNullForOptionalEmptyInBuilder implements ComplexStyleFeature {
 
     private final Consumer<String> setter;
     private final Supplier<Optional<String>> getter;
 
-    public CanPassNullForOptionalFieldInBuilder(Consumer<String> setter, Supplier<Optional<String>> getter) {
+    public CanPassNullForOptionalEmptyInBuilder(Consumer<String> setter, Supplier<Optional<String>> getter) {
         this.setter = setter;
         this.getter = getter;
     }
