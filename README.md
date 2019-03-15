@@ -1,4 +1,4 @@
-# Treatwell `@Style`s for [Immutables](https://immutables.github.io/)
+# Treatwell's pre-made styles for [Immutables](https://immutables.github.io/)
 
 Build status: <insert badge>
 
