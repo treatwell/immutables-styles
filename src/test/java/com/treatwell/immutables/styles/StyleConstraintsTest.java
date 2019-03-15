@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -17,13 +18,18 @@ import com.treatwell.immutables.styles.constraints.StyleConstraint;
 @RunWith(Parameterized.class)
 public abstract class StyleConstraintsTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StyleConstraintsTest.class);
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Parameter(0)
     public String constraintName;
 
     @Parameter(1)
     public BiConsumer<Class<?>, Class<?>> constraintCheck;
+
+    @Before
+    public void beforeEach() {
+        logger.info("Constraint: {}", constraintName);
+    }
 
     @Test
     public void checkConstraint() {
