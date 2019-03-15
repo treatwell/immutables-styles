@@ -1,55 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <name>Treatwell Styles for Immutables</name>
+    <description>Pre-made styles for the Immutables code generation Java toolkit</description>
+    <url>https://github.com/treatwell/immutable-styles</url>
+
     <groupId>com.treatwell</groupId>
     <artifactId>immutables-styles</artifactId>
     <version>2.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>immutables-styles</name>
+
+    <licenses>
+        <license>
+            <name>TBD</name>
+            <url>http://put-license-url.tw</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Tristan Deloche</name>
+            <email>tristan.deloche@treatwell.com</email>
+            <organization>Treatwell</organization>
+            <organizationUrl>https://github.com/treatwell</organizationUrl>
+        </developer>
+    </developers>
 
     <scm>
-      <developerConnection>scm:git:ssh://git@git.treatwell.net/dev/java-libs/immutables-styles.git</developerConnection>
-      <tag>HEAD</tag>
+        <connection>scm:git:https://github.com/treatwell/immutable-styles.git</connection>
+        <developerConnection>scm:git:https://github.com/treatwell/immutable-styles.git</developerConnection>
+        <url>http://github.com/treatwell/immutable-styles/tree/${project.scm.tag}</url>
+        <tag>master</tag>
     </scm>
 
+    <issueManagement>
+        <system>Github Issues</system>
+        <url>https://github.com/treatwell/immutable-styles/issues</url>
+    </issueManagement>
+
     <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <hibernate.jpa21.version>1.0.0.Final</hibernate.jpa21.version>
-        <jackson.version>2.9.5</jackson.version>
-        <immutables.version>2.5.6</immutables.version>
+        <jackson.version>2.9.8</jackson.version>
+        <immutables.version>2.7.4</immutables.version>
 
         <checkstyle.version>8.8</checkstyle.version>
         <checkstyle.config-file>checkstyle-8-config.xml</checkstyle.config-file>
-        <code.settings.unicorn.version>1.4.11</code.settings.unicorn.version>
-
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.immutables</groupId>
-            <artifactId>value</artifactId>
-            <version>${immutables.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>1.0.0.Final</version>
-            <optional>true</optional>
-        </dependency>
-
-    </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <showWarnings>true</showWarnings>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                        <arg>-Xlint:-processing</arg>
+                        <arg>-Werror</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -58,9 +77,9 @@
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <includeResources>false</includeResources>
                     <includeTestResources>false</includeTestResources>
-                    <suppressionsLocation>suppressions.xml</suppressionsLocation>
+                    <suppressionsLocation>checkstyle/suppressions.xml</suppressionsLocation>
                     <failOnViolation>true</failOnViolation>
-                    <configLocation>${checkstyle.config-file}</configLocation>
+                    <configLocation>checkstyle/checkstyle-8-config.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                 </configuration>
                 <executions>
@@ -102,34 +121,54 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <detectJavaApiLink>true</detectJavaApiLink>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>javadoc</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
-        <extensions>
-            <extension>
-                <groupId>com.treatwell.unicorn</groupId>
-                <artifactId>code-settings-unicorn</artifactId>
-                <version>${code.settings.unicorn.version}</version>
-            </extension>
-        </extensions>
     </build>
 
-    <repositories>
-        <repository>
-            <id>treatwell-proxy</id>
-            <name>Treatwell Release Repository</name>
-            <url>http://mvn.twtools.io/repository/public/</url>
-        </repository>
-    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>org.immutables</groupId>
+            <artifactId>value</artifactId>
+            <version>${immutables.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
     <distributionManagement>
-        <repository>
-            <id>treatwell-nexus</id>
-            <name>Treatwell Nexus Release Repository</name>
-            <url>http://mvn.twtools.io/repository/releases</url>
-        </repository>
         <snapshotRepository>
-            <id>treatwell-nexus</id>
-            <name>Treatwell Nexus Snapshot Repository</name>
-            <url>http://mvn.twtools.io/repository/snapshots</url>
+            <id>central-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>central-release</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
 </project>
