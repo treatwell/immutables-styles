@@ -11,6 +11,8 @@ import java.util.Optional;
 import org.immutables.value.Value.Immutable;
 import org.junit.runners.Parameterized.Parameters;
 
+import com.treatwell.immutables.styles.features.StyleFeature;
+
 public class DefaultStyleTest extends StyleFeaturesTest {
 
     @Parameters(name = "{0}")
@@ -18,8 +20,8 @@ public class DefaultStyleTest extends StyleFeaturesTest {
         return supportsFeatures(
                 HAS_PRIVATE_NO_ARG_CONSTRUCTOR,
                 RECOGNIZES_BOOLEAN_GETTERS,
-                CAN_PASS_NULL_FOR_OPTIONAL_FIELD,
-                SERIALIZABLE_BY_JACKSON
+                SERIALIZABLE_BY_JACKSON,
+                optionalPassNullFeature()
         );
     }
 
@@ -46,6 +48,14 @@ public class DefaultStyleTest extends StyleFeaturesTest {
 
         Optional<String> getOptionalString();
 
+    }
+
+    private static StyleFeature optionalPassNullFeature() {
+        final ImmutableDefaultStyleBased.Builder builder = ImmutableDefaultStyleBased.builder().something(true);
+        return CAN_PASS_NULL_FOR_OPTIONAL_FIELD.apply(
+                builder::optionalString,
+                () -> builder.build().getOptionalString()
+        );
     }
 
 }
