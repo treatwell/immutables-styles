@@ -2,21 +2,17 @@ package com.treatwell.immutables.styles;
 
 import static com.treatwell.immutables.styles.constraints.StyleConstraints.HAS_PRIVATE_NO_ARG_CONSTRUCTOR;
 
+import java.util.Collection;
 import java.util.Optional;
-import java.util.Set;
 
-import org.assertj.core.util.Sets;
 import org.immutables.value.Value.Immutable;
-
-import com.treatwell.immutables.styles.constraints.StyleConstraint;
+import org.junit.runners.Parameterized.Parameters;
 
 public class DefaultStyleTest extends StyleConstraintsTest {
 
-    @Override
-    Set<StyleConstraint> getConstraintsForTestedStyle() {
-        return Sets.newLinkedHashSet(
-                HAS_PRIVATE_NO_ARG_CONSTRUCTOR
-        );
+    @Parameters(name = "{0}")
+    public static Collection<Object[]> getConstraints() {
+        return constraints(HAS_PRIVATE_NO_ARG_CONSTRUCTOR);
     }
 
     @Override
