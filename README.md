@@ -11,6 +11,6 @@ Every release must also have a changelog entry in `CHANGELOG.md` following the p
 
 ## Builds
 [Master branch](http://jenkins.twtools.io/job/Java-Libraries/job/immutables-styles-master/)
-: trigerred by Git polling
+: triggered by Git polling
 
 [Release tag](http://jenkins.twtools.io/job/Java-Libraries/job/immutables-styles-Release/): must be triggered manually
