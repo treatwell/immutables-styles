@@ -16,7 +16,7 @@ public class RecognizesBooleanGetters implements StyleConstraint {
     }
 
     @Override
-    public void assertValid(Class<?> annotated, Class<?> generated) {
+    public void assertValid(Class<?> style, Class<?> annotated, Class<?> generated) {
         final Set<Method> expected = readBooleanGetters(annotated);
         assertThat(expected).withFailMessage(
                 "Tested style has added support for is*-named getter methods, please ensure your annotated test class has at least one."

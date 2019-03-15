@@ -12,7 +12,7 @@ public class PrivateNoArgConstructorConstraint implements StyleConstraint {
     }
 
     @Override
-    public void assertValid(Class<?> annotated, Class<?> generated) {
+    public void assertValid(Class<?> style, Class<?> annotated, Class<?> generated) {
         final boolean annotatedHasConstructor = isNoArgPrivateConstructorFound(annotated);
         final boolean generatedHasConstructor = isNoArgPrivateConstructorFound(generated);
 

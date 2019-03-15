@@ -2,7 +2,6 @@ package com.treatwell.immutables.styles;
 
 import java.util.Arrays;
 import java.util.Set;
-import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 import org.junit.Before;
@@ -13,6 +12,7 @@ import org.junit.runners.Parameterized.Parameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.treatwell.immutables.styles.constraints.ConstraintCheck;
 import com.treatwell.immutables.styles.constraints.StyleConstraint;
 
 @RunWith(Parameterized.class)
@@ -24,7 +24,7 @@ public abstract class StyleConstraintsTest {
     public String constraintName;
 
     @Parameter(1)
-    public BiConsumer<Class<?>, Class<?>> constraintCheck;
+    public ConstraintCheck constraintCheck;
 
     @Before
     public void beforeEach() {
@@ -33,7 +33,7 @@ public abstract class StyleConstraintsTest {
 
     @Test
     public void checkConstraint() {
-        constraintCheck.accept(getStyleAnnotatedClass(), getGeneratedClass());
+        constraintCheck.checkConstraint(getStyleClass(), getStyleAnnotatedClass(), getGeneratedClass());
     }
 
     abstract Class<?> getStyleClass();
@@ -45,7 +45,7 @@ public abstract class StyleConstraintsTest {
     protected static Set<Object[]> prepareParameters(StyleConstraint... constraints) {
         return Arrays.stream(constraints).map(constraint -> new Object[]{
                 constraint.getReadableConstraintName(),
-                (BiConsumer<Class<?>, Class<?>>) constraint::assertValid
+                (ConstraintCheck) constraint::assertValid
         }).collect(Collectors.toSet());
     }
 
