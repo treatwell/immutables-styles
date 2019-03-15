@@ -2,7 +2,7 @@ package com.treatwell.immutables.styles.features;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UsesStandardNamingStrategy implements StyleFeature {
+public class DefaultImmutablesNamingStrategy implements StyleFeature {
 
     private static final String PREFIX = "Immutable";
 

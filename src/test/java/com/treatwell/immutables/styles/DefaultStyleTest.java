@@ -3,7 +3,7 @@ package com.treatwell.immutables.styles;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.HAS_PRIVATE_NO_ARG_CONSTRUCTOR;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.RECOGNIZES_BOOLEAN_GETTERS;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.SERIALIZABLE_BY_JACKSON;
-import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.USES_STANDARD_NAMING_STRATEGY;
+import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.DEFAULT_IMMUTABLES_NAMING_STRATEGY;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -12,6 +12,7 @@ import org.immutables.value.Value.Immutable;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.treatwell.immutables.styles.features.CanPassNullForOptionalEmptyInBuilder;
+import com.treatwell.immutables.styles.features.StrictBuilder;
 import com.treatwell.immutables.styles.features.StyleFeature;
 
 public class DefaultStyleTest extends StyleFeaturesTest {
@@ -22,8 +23,9 @@ public class DefaultStyleTest extends StyleFeaturesTest {
                 HAS_PRIVATE_NO_ARG_CONSTRUCTOR,
                 RECOGNIZES_BOOLEAN_GETTERS,
                 SERIALIZABLE_BY_JACKSON,
-                USES_STANDARD_NAMING_STRATEGY,
-                optionalPassNullFeature()
+                DEFAULT_IMMUTABLES_NAMING_STRATEGY,
+                optionalPassNullFeature(),
+                strictBuilders()
         );
     }
 
@@ -58,6 +60,10 @@ public class DefaultStyleTest extends StyleFeaturesTest {
                 builder::optionalString,
                 () -> builder.build().getOptionalString()
         );
+    }
+
+    private static StyleFeature strictBuilders() {
+        return new StrictBuilder(ImmutableDefaultStyleBased.builder()::optionalString);
     }
 
 }
