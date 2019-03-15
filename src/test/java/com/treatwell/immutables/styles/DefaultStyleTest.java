@@ -3,6 +3,7 @@ package com.treatwell.immutables.styles;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.HAS_PRIVATE_NO_ARG_CONSTRUCTOR;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.RECOGNIZES_BOOLEAN_GETTERS;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.SERIALIZABLE_BY_JACKSON;
+import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.USES_STANDARD_NAMING_STRATEGY;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class DefaultStyleTest extends StyleFeaturesTest {
                 HAS_PRIVATE_NO_ARG_CONSTRUCTOR,
                 RECOGNIZES_BOOLEAN_GETTERS,
                 SERIALIZABLE_BY_JACKSON,
+                USES_STANDARD_NAMING_STRATEGY,
                 optionalPassNullFeature()
         );
     }
