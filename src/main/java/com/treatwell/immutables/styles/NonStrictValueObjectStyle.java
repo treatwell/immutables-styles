@@ -28,7 +28,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  *             .from(overrides).build();
  * }
  * </pre></code>
- *
+ * <p>
  * All the other uses described in the {@link ValueObjectStyle} still apply. Any changes
  * made there, should be applied here as well.
  */
@@ -50,8 +50,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
         privateNoargConstructor = true, // allow hibernate etc. to instantiate immutables
         // We allow some specific annotations to be passed through when provided on the abstract
         // class/interface, as they may be required on the underlying single public final implementation
-        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class,
-                JsonSerialize.class, Access.class },
+        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, JsonSerialize.class, Access.class },
         // We disable strict builders here
         strictBuilder = false,
         // Ensure Guava collections are not used, since Spring converters do not support them
@@ -63,4 +62,5 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 )
 @JsonSerialize // Triggers Jackson integration on all users.
 public @interface NonStrictValueObjectStyle {
+
 }
