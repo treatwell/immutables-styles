@@ -1,6 +1,7 @@
 package com.treatwell.immutables.styles;
 
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.ABSTRACT_STRIPPING_NAMING_STRATEGY;
+import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.GENERATED_CLASS_IS_PUBLIC;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.HAS_PRIVATE_NO_ARG_CONSTRUCTOR;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.RECOGNIZES_BOOLEAN_GETTERS;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.SERIALIZABLE_BY_JACKSON;
@@ -24,6 +25,7 @@ public class ValueObjectStyleTest extends StyleFeaturesTest {
                 RECOGNIZES_BOOLEAN_GETTERS,
                 SERIALIZABLE_BY_JACKSON,
                 ABSTRACT_STRIPPING_NAMING_STRATEGY,
+                GENERATED_CLASS_IS_PUBLIC,
                 optionalPassNullFeature(),
                 strictBuilders()
         );
