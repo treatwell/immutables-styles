@@ -12,7 +12,17 @@ public class DefaultStyleTest extends StyleConstraintsTest {
 
     @Parameters(name = "{0}")
     public static Collection<Object[]> getConstraints() {
-        return constraints(HAS_PRIVATE_NO_ARG_CONSTRUCTOR);
+        return prepareParameters(HAS_PRIVATE_NO_ARG_CONSTRUCTOR);
+    }
+
+    @Override
+    Class<?> getStyleClass() {
+        return DefaultStyle.class;
+    }
+
+    @Override
+    Class<?> getStyleAnnotatedClass() {
+        return DefaultStyleBased.class;
     }
 
     @Override

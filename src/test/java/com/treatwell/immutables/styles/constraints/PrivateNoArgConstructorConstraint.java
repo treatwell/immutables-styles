@@ -1,9 +1,8 @@
 package com.treatwell.immutables.styles.constraints;
 
 import static java.lang.reflect.Modifier.isPrivate;
+import static java.util.Arrays.stream;
 import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.Arrays;
 
 public class PrivateNoArgConstructorConstraint implements StyleConstraint {
 
@@ -13,15 +12,26 @@ public class PrivateNoArgConstructorConstraint implements StyleConstraint {
     }
 
     @Override
-    public void assertOnTarget(Class<?> clazz) {
-        final boolean noArgPrivateConstructorFound = Arrays
-                .stream(clazz.getDeclaredConstructors())
+    public void assertValid(Class<?> annotated, Class<?> generated) {
+        final boolean annotatedHasConstructor = isNoArgPrivateConstructorFound(annotated);
+        final boolean generatedHasConstructor = isNoArgPrivateConstructorFound(generated);
+
+        assertThat(annotatedHasConstructor).withFailMessage(
+                "Did not expect a private no-arg constructor in annotated class (should have been interface!): %s",
+                annotated
+        ).isFalse();
+
+        assertThat(generatedHasConstructor).withFailMessage(
+                "Did not find expected private no-arg constructor for class %s generated from %s",
+                generated,
+                annotated
+        ).isTrue();
+    }
+
+    private boolean isNoArgPrivateConstructorFound(Class<?> generated) {
+        return stream(generated.getDeclaredConstructors())
                 .filter(constructor -> isPrivate(constructor.getModifiers()))
                 .anyMatch(constructor -> constructor.getParameterCount() == 0);
-
-        assertThat(noArgPrivateConstructorFound)
-                .withFailMessage("Did not find expected private no-arg constructor for class %s", clazz)
-                .isTrue();
     }
 
 }

@@ -4,6 +4,6 @@ public interface StyleConstraint {
 
     String getReadableConstraintName();
 
-    void assertOnTarget(Class<?> clazz);
+    void assertValid(Class<?> annotated, Class<?> generated);
 
 }

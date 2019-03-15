@@ -1,9 +1,8 @@
 package com.treatwell.immutables.styles;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Set;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
@@ -24,23 +23,23 @@ public abstract class StyleConstraintsTest {
     public String constraintName;
 
     @Parameter(1)
-    public Consumer<Class<?>> constraintCheck;
+    public BiConsumer<Class<?>, Class<?>> constraintCheck;
 
     @Test
     public void checkConstraint() {
-        constraintCheck.accept(getGeneratedClass());
+        constraintCheck.accept(getStyleAnnotatedClass(), getGeneratedClass());
     }
+
+    abstract Class<?> getStyleClass();
+
+    abstract Class<?> getStyleAnnotatedClass();
 
     abstract Class<?> getGeneratedClass();
 
-    protected static Collection<Object[]> constraints(StyleConstraint... constraints) {
-        return prepareParameters(constraints);
-    }
-
-    private static Set<Object[]> prepareParameters(StyleConstraint[] constraints) {
+    protected static Set<Object[]> prepareParameters(StyleConstraint... constraints) {
         return Arrays.stream(constraints).map(constraint -> new Object[]{
                 constraint.getReadableConstraintName(),
-                (Consumer<Class<?>>) constraint::assertOnTarget
+                (BiConsumer<Class<?>, Class<?>>) constraint::assertValid
         }).collect(Collectors.toSet());
     }
 
