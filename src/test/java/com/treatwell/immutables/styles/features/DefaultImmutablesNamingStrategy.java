@@ -8,7 +8,7 @@ public class DefaultImmutablesNamingStrategy implements StyleFeature {
 
     @Override
     public String getHumanReadableFeatureName() {
-        return "Uses the default abstract->concrete naming stratey (Xyz->ImmutableXyz)";
+        return "Uses the default naming stratey (Xyz -> ImmutableXyz)";
     }
 
     @Override
