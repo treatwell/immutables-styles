@@ -16,7 +16,7 @@ import com.treatwell.immutables.styles.features.CanPassNullForOptionalEmptyInBui
 import com.treatwell.immutables.styles.features.StrictBuilder;
 import com.treatwell.immutables.styles.features.StyleFeature;
 
-public class ValueObjectStyleTest extends StyleFeaturesTest {
+public class ValueObjectStyleTest extends AbstractStyleFeaturesTest {
 
     @Parameters(name = "{0}")
     public static Collection<Object[]> expectedFeatures() {

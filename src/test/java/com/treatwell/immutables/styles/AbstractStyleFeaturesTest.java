@@ -16,7 +16,7 @@ import com.treatwell.immutables.styles.features.StyleFeatureCheck;
 import com.treatwell.immutables.styles.features.StyleFeature;
 
 @RunWith(Parameterized.class)
-public abstract class StyleFeaturesTest {
+public abstract class AbstractStyleFeaturesTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
