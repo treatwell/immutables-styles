@@ -1,9 +1,9 @@
 package com.treatwell.immutables.styles;
 
-import static com.treatwell.immutables.styles.constraints.StyleConstraints.CAN_PASS_NULL_FOR_OPTIONAL_FIELD;
-import static com.treatwell.immutables.styles.constraints.StyleConstraints.HAS_PRIVATE_NO_ARG_CONSTRUCTOR;
-import static com.treatwell.immutables.styles.constraints.StyleConstraints.RECOGNIZES_BOOLEAN_GETTERS;
-import static com.treatwell.immutables.styles.constraints.StyleConstraints.SERIALIZABLE_BY_JACKSON;
+import static com.treatwell.immutables.styles.features.StyleFeatures.CAN_PASS_NULL_FOR_OPTIONAL_FIELD;
+import static com.treatwell.immutables.styles.features.StyleFeatures.HAS_PRIVATE_NO_ARG_CONSTRUCTOR;
+import static com.treatwell.immutables.styles.features.StyleFeatures.RECOGNIZES_BOOLEAN_GETTERS;
+import static com.treatwell.immutables.styles.features.StyleFeatures.SERIALIZABLE_BY_JACKSON;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -11,11 +11,11 @@ import java.util.Optional;
 import org.immutables.value.Value.Immutable;
 import org.junit.runners.Parameterized.Parameters;
 
-public class DefaultStyleTest extends StyleConstraintsTest {
+public class DefaultStyleTest extends StyleFeaturesTest {
 
     @Parameters(name = "{0}")
-    public static Collection<Object[]> getConstraints() {
-        return prepareParameters(
+    public static Collection<Object[]> expectedFeatures() {
+        return supportsFeatures(
                 HAS_PRIVATE_NO_ARG_CONSTRUCTOR,
                 RECOGNIZES_BOOLEAN_GETTERS,
                 CAN_PASS_NULL_FOR_OPTIONAL_FIELD,

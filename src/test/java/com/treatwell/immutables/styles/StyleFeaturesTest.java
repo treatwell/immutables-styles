@@ -12,28 +12,28 @@ import org.junit.runners.Parameterized.Parameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.treatwell.immutables.styles.constraints.ConstraintCheck;
-import com.treatwell.immutables.styles.constraints.StyleConstraint;
+import com.treatwell.immutables.styles.features.StyleFeatureCheck;
+import com.treatwell.immutables.styles.features.StyleFeature;
 
 @RunWith(Parameterized.class)
-public abstract class StyleConstraintsTest {
+public abstract class StyleFeaturesTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Parameter(0)
-    public String constraintName;
+    public String featureName;
 
     @Parameter(1)
-    public ConstraintCheck constraintCheck;
+    public StyleFeatureCheck featureCheck;
 
     @Before
     public void beforeEach() {
-        logger.info("Constraint: {}", constraintName);
+        logger.info("Feature: {}", featureName);
     }
 
     @Test
-    public void checkConstraint() {
-        constraintCheck.checkConstraint(getStyleClass(), getStyleAnnotatedClass(), getGeneratedClass());
+    public void checkFeature() {
+        featureCheck.ensureFeature(getStyleClass(), getStyleAnnotatedClass(), getGeneratedClass());
     }
 
     abstract Class<?> getStyleClass();
@@ -42,10 +42,10 @@ public abstract class StyleConstraintsTest {
 
     abstract Class<?> getGeneratedClass();
 
-    protected static Set<Object[]> prepareParameters(StyleConstraint... constraints) {
-        return Arrays.stream(constraints).map(constraint -> new Object[]{
-                constraint.getReadableConstraintName(),
-                (ConstraintCheck) constraint::assertValid
+    protected static Set<Object[]> supportsFeatures(StyleFeature... styleFeatures) {
+        return Arrays.stream(styleFeatures).map(styleFeature -> new Object[]{
+                styleFeature.getHumanReadableFeatureName(),
+                (StyleFeatureCheck) styleFeature::assertFeature
         }).collect(Collectors.toSet());
     }
 

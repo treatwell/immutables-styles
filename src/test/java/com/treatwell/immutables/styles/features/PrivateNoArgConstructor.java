@@ -1,18 +1,18 @@
-package com.treatwell.immutables.styles.constraints;
+package com.treatwell.immutables.styles.features;
 
 import static java.lang.reflect.Modifier.isPrivate;
 import static java.util.Arrays.stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PrivateNoArgConstructorConstraint implements StyleConstraint {
+public class PrivateNoArgConstructor implements StyleFeature {
 
     @Override
-    public String getReadableConstraintName() {
+    public String getHumanReadableFeatureName() {
         return "Has private no-arg constructor";
     }
 
     @Override
-    public void assertValid(Class<?> style, Class<?> annotated, Class<?> generated) {
+    public void assertFeature(Class<?> style, Class<?> annotated, Class<?> generated) {
         final boolean annotatedHasConstructor = isNoArgPrivateConstructorFound(annotated);
         final boolean generatedHasConstructor = isNoArgPrivateConstructorFound(generated);
 
