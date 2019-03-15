@@ -1,19 +1,27 @@
 package com.treatwell.immutables.styles;
 
+import static com.treatwell.immutables.styles.constraints.StyleConstraints.HAS_PRIVATE_NO_ARG_CONSTRUCTOR;
+
 import java.util.Optional;
+import java.util.Set;
 
+import org.assertj.core.util.Sets;
 import org.immutables.value.Value.Immutable;
-import org.junit.Test;
 
-import com.treatwell.immutables.styles.constraints.StyleConstraints;
+import com.treatwell.immutables.styles.constraints.StyleConstraint;
 
-public class DefaultStyleTest {
+public class DefaultStyleTest extends StyleConstraintsTest {
 
-    private static final Class<?> GENERATED_CLASS = ImmutableDefaultStyleBased.class;
+    @Override
+    Set<StyleConstraint> getConstraintsForTestedStyle() {
+        return Sets.newLinkedHashSet(
+                HAS_PRIVATE_NO_ARG_CONSTRUCTOR
+        );
+    }
 
-    @Test
-    public void hasPrivateNoArgConstructor() {
-        StyleConstraints.HAS_PRIVATE_NO_ARG_CONSTRUCTOR.assertOnTarget(GENERATED_CLASS);
+    @Override
+    Class<?> getGeneratedClass() {
+        return ImmutableDefaultStyleBased.class;
     }
 
     @Immutable
