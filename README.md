@@ -1,16 +1,22 @@
-# Immutables Styles
-This library contains Immutables (https://immutables.github.io/) styles.
+# Treatwell `@Style`s for [Immutables](https://immutables.github.io/)
 
-## Maintainers
-Platform team (Slack: #tech-platform)
+Build status: <insert badge>
 
-## Branching model
-[Branching model](https://wahanda.atlassian.net/wiki/spaces/TECH/pages/47939668/Branching#Branching-Branchingofseparated(Hydrafied)Javalibraries)
+Code quality thingy: <insert badge>
 
-Every release must also have a changelog entry in `CHANGELOG.md` following the principles defined in [keepachangelog.com](https://keepachangelog.com/en/1.0.0/). During development release notes should be added under `UNRELEASED` section which would be promoted to the release notes.
+FOSS@Treatwell: <insert badge to some promotionnal job posting page because we might as well :)>
 
-## Builds
-[Master branch](http://jenkins.twtools.io/job/Java-Libraries/job/immutables-styles-master/)
-: trigerred by Git polling
+## Make your immutable classes _glow_ with some of our `@Style`s!
 
-[Release tag](http://jenkins.twtools.io/job/Java-Libraries/job/immutables-styles-Release/): must be triggered manually
+With Immutables, you can generate safe immutable implementations for your instances, rather than writing the POJO boilerplate yourself.
+
+While it is a wonderful library and offers quite a lot of customization, sometimes the defaults are not exactly as we often might use them:
+- Requires manual annotation to generate hinted subclasses for FasterXML's wildly popular [Jackson](https://github.com/FasterXML) serialization library (Json, XML, Yaml,...)
+- Does offer a one-size-fits all sensible default that might not be suited to different specific object usages (DTOs, Events, Bean-conforming, and so on)
+
+This is why we have come up with pre-made specialized styles usable in various more or less specific cases depending on what you want to achieve.
+
+### `@ValueObjectStyle`
+
+The simplest type of POJOs. From an abstract class named `AbstractXYZ` it will generate and immutable instance named `XYZ` (like the default immutable setup),
+but will also automatically make it so that `XYZ` subclass is ready for serialization (and deserialization) using _Jackson_.
