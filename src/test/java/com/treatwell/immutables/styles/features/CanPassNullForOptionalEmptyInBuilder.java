@@ -8,12 +8,12 @@ import java.util.function.Supplier;
 
 public class CanPassNullForOptionalEmptyInBuilder implements ComplexStyleFeature {
 
-    private final Consumer<String> setter;
-    private final Supplier<Optional<String>> getter;
+    private final Consumer<String> builderSetter;
+    private final Supplier<Optional<String>> instanceGetter;
 
-    public CanPassNullForOptionalEmptyInBuilder(Consumer<String> setter, Supplier<Optional<String>> getter) {
-        this.setter = setter;
-        this.getter = getter;
+    public CanPassNullForOptionalEmptyInBuilder(Consumer<String> builderSetter, Supplier<Optional<String>> instanceGetter) {
+        this.builderSetter = builderSetter;
+        this.instanceGetter = instanceGetter;
     }
 
     @Override
@@ -23,8 +23,8 @@ public class CanPassNullForOptionalEmptyInBuilder implements ComplexStyleFeature
 
     @Override
     public void additionalCheckWithImplementation() {
-        setter.accept(null);
-        assertThat(getter.get()).withFailMessage(
+        builderSetter.accept(null);
+        assertThat(instanceGetter.get()).withFailMessage(
                 "Giving null as value in builder should have mapped to an empty optional."
         ).isEmpty();
     }
