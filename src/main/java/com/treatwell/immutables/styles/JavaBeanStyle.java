@@ -1,6 +1,6 @@
 package com.treatwell.immutables.styles;
 
-import org.immutables.value.Value;
+import org.immutables.value.Value.Style;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * classes with have setters with void return types. Primary use case is for command objects
  * that would be posted using JSF.
  */
-@Value.Style(
+@Style(
     // Generate Java bean like setters (void return type)
     beanFriendlyModifiables = true,
     // We will let Jackson work its normal magic to compute property names, which also provides us the flexibility

@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * occurred. An event class can be defined of the form:
  *
  * <pre>{@code
- * @Value.Immutable
+ * @Immutable
  * abstract class VenuePublished extends DomainEvent {
  *     private static final long serialVersionUID = 1L;
  *     String getName();

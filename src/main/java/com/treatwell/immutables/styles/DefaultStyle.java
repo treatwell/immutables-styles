@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  *     Venue findById(VenueId id);
  * }
  *
- * @Value.Immutable
+ * @Immutable
  * @JsonSerialize(as = ImmutableVenue.class)
  * @JsonDeserialize(as = ImmutableVenue.class)
  * public interface Venue extends IdentifiedBy<VenueId> {
