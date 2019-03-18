@@ -67,8 +67,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
         // We allow some specific annotations to be passed through when provided on the abstract
         // class/interface, as they may be required on the underlying single public final implementation
         passAnnotations = {
-                JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class,
-                JsonSerialize.class, Access.class
+                JsonTypeName.class,
+                JsonPropertyOrder.class,
+                JsonProperty.class,
+                JsonSerialize.class,
+                Access.class
         },
         // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
         // so we enforce the use of strict builders for our value objects (with the exception of
