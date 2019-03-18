@@ -1,5 +1,8 @@
 package com.treatwell.immutables.styles;
 
+import static com.treatwell.immutables.styles.constants.ClassNameMatchers.SUFFIX_EVENT;
+import static com.treatwell.immutables.styles.constants.MethodNameMatchers.PREFIX_GET;
+import static com.treatwell.immutables.styles.constants.MethodNameMatchers.PREFIX_IS;
 import static org.immutables.value.Value.Style.ImplementationVisibility.PUBLIC;
 
 import org.immutables.value.Value.Style;
@@ -27,9 +30,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         // A. Properties defining how clients use the Immutables
 
         // Allow for simple boolean types as well.
-        get = {"is*", "get*"}, // Allow for simple boolean types as well.
+        get = {PREFIX_IS, PREFIX_GET}, // Allow for simple boolean types as well.
         // Use a suffix of "Event"
-        typeImmutable = "*Event",
+        typeImmutable = SUFFIX_EVENT,
         // Event definitions may be package-private, but we certainly want the impls to be public
         visibility = PUBLIC,
 

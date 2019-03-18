@@ -1,5 +1,8 @@
 package com.treatwell.immutables.styles;
 
+import static com.treatwell.immutables.styles.constants.ClassNameMatchers.PREFIX_ABSTRACT;
+import static com.treatwell.immutables.styles.constants.MethodNameMatchers.PREFIX_GET;
+import static com.treatwell.immutables.styles.constants.MethodNameMatchers.PREFIX_IS;
 import static org.immutables.value.Value.Style.ImplementationVisibility.PUBLIC;
 
 import javax.persistence.Access;
@@ -52,9 +55,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
         // A. Properties defining how clients use the Immutables
 
         // Allow for simple boolean types as well.
-        get = {"is*", "get*"}, // Allow for simple boolean types as well.
+        get = {PREFIX_IS, PREFIX_GET}, // Allow for simple boolean types as well.
         // We expect the defining type to be an Abstract type
-        typeAbstract = "Abstract*",
+        typeAbstract = PREFIX_ABSTRACT,
         // Remove the 'Abstract' prefix from the public implementation
         typeImmutable = "*",
         // We expect the abstract types to be non-public, and we want the impls to be public

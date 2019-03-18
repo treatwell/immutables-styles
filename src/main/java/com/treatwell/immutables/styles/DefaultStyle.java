@@ -1,5 +1,9 @@
 package com.treatwell.immutables.styles;
 
+import static com.treatwell.immutables.styles.constants.ClassNameMatchers.PREFIX_IMMUTABLE;
+import static com.treatwell.immutables.styles.constants.MethodNameMatchers.PREFIX_GET;
+import static com.treatwell.immutables.styles.constants.MethodNameMatchers.PREFIX_IS;
+
 import org.immutables.value.Value.Style;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -47,9 +51,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
         // A. Properties defining how clients use the Immutables
 
         // Allow for simple boolean types as well.
-        get = {"is*", "get*"},
+        get = {PREFIX_IS, PREFIX_GET},
         // Take the type name (`Xyz`) and prefix the implementation (`ImmutableXyz`)
-        typeImmutable = "Immutable*",
+        typeImmutable = PREFIX_IMMUTABLE,
 
         // B. Internal implementation details
 
