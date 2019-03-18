@@ -37,6 +37,14 @@ public class JavaBeanStyleTest extends AbstractStyleFeaturesTest {
         return ImmutableMyBean.class;
     }
 
+    private static BeanFriendlyModifiable beanFriendlyModifiableClass() {
+        final ModifiableMyBean modifiable = ModifiableMyBean.create();
+        return new BeanFriendlyModifiable(
+                modifiable::setValue,
+                modifiable::getValue
+        );
+    }
+
     @Immutable
     @Modifiable
     @JavaBeanStyle
@@ -44,14 +52,6 @@ public class JavaBeanStyleTest extends AbstractStyleFeaturesTest {
 
         String getValue();
 
-    }
-
-    private static BeanFriendlyModifiable beanFriendlyModifiableClass() {
-        final ModifiableMyBean modifiable = ModifiableMyBean.create();
-        return new BeanFriendlyModifiable(
-                modifiable::setValue,
-                modifiable::getValue
-        );
     }
 
 }

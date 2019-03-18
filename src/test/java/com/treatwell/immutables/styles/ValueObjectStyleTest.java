@@ -46,16 +46,6 @@ public class ValueObjectStyleTest extends AbstractStyleFeaturesTest {
         return Something.class;
     }
 
-    @Immutable
-    @ValueObjectStyle
-    static abstract class AbstractSomething {
-
-        abstract boolean isSomething();
-
-        abstract Optional<String> getOptionalString();
-
-    }
-
     private static StyleFeature optionalPassNullFeature() {
         final Something.Builder builder = Something.builder().something(true);
         return new CanPassNullForOptionalEmptyInBuilder(
@@ -66,6 +56,16 @@ public class ValueObjectStyleTest extends AbstractStyleFeaturesTest {
 
     private static StyleFeature strictBuilders() {
         return new StrictBuilder(Something.builder()::optionalString);
+    }
+
+    @Immutable
+    @ValueObjectStyle
+    abstract static class AbstractSomething {
+
+        abstract boolean isSomething();
+
+        abstract Optional<String> getOptionalString();
+
     }
 
 }

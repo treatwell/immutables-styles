@@ -13,32 +13,33 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * DTO objects for a given service API. For example, we can define an API of:
  *
  * <pre>{@code
- * public interface VenueService {
- *     Venue findById(VenueId id);
- * }
+ *  public interface VenueService {
+ *      Venue findById(VenueId id);
+ *  }
  *
- * @Immutable
- * @JsonSerialize(as = ImmutableVenue.class)
- * @JsonDeserialize(as = ImmutableVenue.class)
- * public interface Venue extends IdentifiedBy<VenueId> {
- *     VenueId getVenueId();
- *     String getName();
- *     List<SomethingElse> getOtherProperty();
- * }
+ *  @Immutable
+ *  @JsonSerialize(as = ImmutableVenue.class)
+ *  @JsonDeserialize(as = ImmutableVenue.class)
+ *  public interface Venue extends IdentifiedBy<VenueId> {
+ *      VenueId getVenueId();
+ *      String getName();
+ *      List<SomethingElse> getOtherProperty();
+ *  }
  * }</pre>
- *
+ * <p>
+ * <p>
  * where the service implementation loads some data, and then converts it to an {@code ImmutableVenue}
  * either because the domain-class implements the Venue interface (e.g. {@code return ImmutableVenue.copyOf(domainVenue);}
  * or by using the explicit builder:
  *
- * <code><pre>
+ * <pre>{@code
  * return ImmutableVenue.builder()
  *     .id(domainId)
  *     .name(domainName)
  *     .otherProperty(emptyList())
  *     .build();
- * </pre></code>
- *
+ * }</pre>
+ * <p>
  * This annotation can be applied on within a {@code package-info.java} file to apply this style by default
  * to all code within the given package.
  */
@@ -69,4 +70,5 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 )
 @JsonSerialize // Triggers Jackson integration on all users.
 public @interface DefaultStyle {
+
 }

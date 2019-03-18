@@ -44,16 +44,6 @@ public class EventStyleTest extends AbstractStyleFeaturesTest {
         return TestActionEvent.class;
     }
 
-    @Immutable
-    @EventStyle
-    public interface TestAction {
-
-        boolean isSomeFlag();
-
-        Optional<String> getEventOptionalString();
-
-    }
-
     private static StyleFeature optionalPassNullFeature() {
         final TestActionEvent.Builder builder = TestActionEvent.builder().someFlag(true);
         return new CanPassNullForOptionalEmptyInBuilder(
@@ -64,6 +54,16 @@ public class EventStyleTest extends AbstractStyleFeaturesTest {
 
     private static StyleFeature strictBuilders() {
         return new StrictBuilder(TestActionEvent.builder()::eventOptionalString);
+    }
+
+    @Immutable
+    @EventStyle
+    public interface TestAction {
+
+        boolean isSomeFlag();
+
+        Optional<String> getEventOptionalString();
+
     }
 
 }

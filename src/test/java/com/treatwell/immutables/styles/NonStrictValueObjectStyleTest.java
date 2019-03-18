@@ -44,22 +44,22 @@ public class NonStrictValueObjectStyleTest extends AbstractStyleFeaturesTest {
         return NonStrictSomething.class;
     }
 
-    @Immutable
-    @NonStrictValueObjectStyle
-    static abstract class AbstractNonStrictSomething {
-
-        abstract boolean isSomething();
-
-        abstract Optional<String> getOptionalString();
-
-    }
-
     private static StyleFeature optionalPassNullFeature() {
         final NonStrictSomething.Builder builder = NonStrictSomething.builder().something(true);
         return new CanPassNullForOptionalEmptyInBuilder(
                 builder::optionalString,
                 () -> builder.build().getOptionalString()
         );
+    }
+
+    @Immutable
+    @NonStrictValueObjectStyle
+    abstract static class AbstractNonStrictSomething {
+
+        abstract boolean isSomething();
+
+        abstract Optional<String> getOptionalString();
+
     }
 
 }

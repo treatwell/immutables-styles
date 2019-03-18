@@ -3,6 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <name>Treatwell Styles for Immutables</name>
+    <organization>
+        <name>Treatwell</name>
+        <url>https://github.com/treatwell</url>
+    </organization>
     <description>Pre-made styles for the Immutables code generation Java toolkit</description>
     <url>https://github.com/treatwell/immutable-styles</url>
 
@@ -21,7 +25,31 @@
     <developers>
         <developer>
             <name>Tristan Deloche</name>
-            <email>tristan.deloche@treatwell.com</email>
+            <email>tristan.deloche_at_treatwell.com</email>
+            <organization>Treatwell</organization>
+            <organizationUrl>https://github.com/treatwell</organizationUrl>
+        </developer>
+        <developer>
+            <name>Paulius Kuras</name>
+            <email>paulius.kuras_at_wahanda.com</email>
+            <organization>Treatwell</organization>
+            <organizationUrl>https://github.com/treatwell</organizationUrl>
+        </developer>
+        <developer>
+            <name>Greg Pappas</name>
+            <email>greg.pappas_at_wahanda.com</email>
+            <organization>Treatwell</organization>
+            <organizationUrl>https://github.com/treatwell</organizationUrl>
+        </developer>
+        <developer>
+            <name>Steve Storey</name>
+            <email>steve_at_treatwell.com</email>
+            <organization>Treatwell</organization>
+            <organizationUrl>https://github.com/treatwell</organizationUrl>
+        </developer>
+        <developer>
+            <name>Balys Valentukevicius</name>
+            <email>balys_at_treatwell.com</email>
             <organization>Treatwell</organization>
             <organizationUrl>https://github.com/treatwell</organizationUrl>
         </developer>
@@ -74,7 +102,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
                     <includeResources>false</includeResources>
                     <includeTestResources>false</includeTestResources>
                     <suppressionsLocation>checkstyle/suppressions.xml</suppressionsLocation>
@@ -127,6 +155,7 @@
                 <version>3.1.0</version>
                 <configuration>
                     <detectJavaApiLink>true</detectJavaApiLink>
+                    <doclint>-html</doclint>
                 </configuration>
                 <executions>
                     <execution>

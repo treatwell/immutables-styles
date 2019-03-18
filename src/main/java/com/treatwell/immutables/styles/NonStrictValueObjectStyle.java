@@ -12,22 +12,21 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
- * Style only to be used on objects which require non-strict builders for some specific (and documented!)
- * reason. One particular use-case is on objects that need to be merged with another instance of the same class,
- * and are those which should be treated almost exactly the same as the
- * {@link ValueObjectStyle}, except that non-strict builders are generated, so that we can
- * use from() methods during the merge logic:
+ * Style only to be used on objects which require non-strict builders for some specific (and documented!) reason.
+ * One particular use-case is on objects that need to be merged with another instance of the same class,
+ * and are those which should be treated almost exactly the same as the{@link ValueObjectStyle}, except that
+ * non-strict builders are generated, so that we can use from() methods during the merge logic:
  *
- * <code><pre>
- * public OnlineBookingDefaults merge(OnlineBookingDefaults overrides) {
- *     if (overrides == null) {
- *         return OnlineBookingDefaults.copyOf(this);
- *     }
- *     return OnlineBookingDefaults.builder()
- *             .from(this)
- *             .from(overrides).build();
- * }
- * </pre></code>
+ * <pre>{@code
+ *  public OnlineBookingDefaults merge(OnlineBookingDefaults overrides) {
+ *      if (overrides == null) {
+ *          return OnlineBookingDefaults.copyOf(this);
+ *      }
+ *      return OnlineBookingDefaults.builder()
+ *              .from(this)
+ *              .from(overrides).build();
+ *  }
+ * }</pre>
  * <p>
  * All the other uses described in the {@link ValueObjectStyle} still apply. Any changes
  * made there, should be applied here as well.
@@ -50,7 +49,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
         privateNoargConstructor = true, // allow hibernate etc. to instantiate immutables
         // We allow some specific annotations to be passed through when provided on the abstract
         // class/interface, as they may be required on the underlying single public final implementation
-        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, JsonSerialize.class, Access.class },
+        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, JsonSerialize.class, Access.class},
         // We disable strict builders here
         strictBuilder = false,
         // Ensure Guava collections are not used, since Spring converters do not support them

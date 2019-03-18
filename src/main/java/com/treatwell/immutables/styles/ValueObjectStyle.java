@@ -15,36 +15,35 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * Immutables {@link Style} to define value-object classes; that is, classes with a single
  * implementation on which all the fields are immutable. This style means that you define:
  *
- * <pre>
- * {@code
- * /* package * / abstract class AbstractValueObject {
- *     Long getId();
- *     @Nullable getName();
- *     boolean isFlagged();
- * }
- * }
- * </pre>
+ * <pre>{@code
+ *   abstract class AbstractValueObject {
+ *       Long getId();
+ *       @Nullable getName();
+ *       boolean isFlagged();
+ *   }
+ * }</pre>
  * <p>
  * from which a single public implementation class ({@code ValueObject}) will be defined:
  *
- * <code><pre>
- * public final class ValueObject extends AbstractValueObject {
- *     Long getId() {...}
- *     @Nullable getName() {...}
- *     boolean isFlagged() {...}
+ * <pre>{@code
+ *   public final class ValueObject extends AbstractValueObject {
+ *       Long getId() {...}
+ *       @Nullable getName() {...}
+ *       boolean isFlagged() {...}
  *
- *     public static ValueObject.Builder builder();
- * }</pre></code>
+ *       public static ValueObject.Builder builder();
+ *   }
+ * }</pre>
  * <p>
  * which is then created via:
  *
- * <code><pre>
- * ValueObject vo = ValueObject.builder()
- *     .id(1234L)
- *     .name("Steve Storey")
- *     .flagged(false)
- *     .build();
- * </pre></code>
+ * <pre>{@code
+ *   ValueObject vo = ValueObject.builder()
+ *       .id(1234L)
+ *       .name("Steve Storey")
+ *       .flagged(false)
+ *       .build();
+ * }</pre>
  * <p>
  * Changes to this object (other than builder strictness), should also be applied to
  * the {@link NonStrictValueObjectStyle} configuration.

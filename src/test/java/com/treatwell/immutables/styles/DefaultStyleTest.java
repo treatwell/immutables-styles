@@ -44,16 +44,6 @@ public class DefaultStyleTest extends AbstractStyleFeaturesTest {
         return ImmutableDefaultStyleBased.class;
     }
 
-    @Immutable
-    @DefaultStyle
-    interface DefaultStyleBased {
-
-        boolean isSomething();
-
-        Optional<String> getOptionalString();
-
-    }
-
     private static StyleFeature optionalPassNullFeature() {
         final ImmutableDefaultStyleBased.Builder builder = ImmutableDefaultStyleBased.builder().something(true);
         return new CanPassNullForOptionalEmptyInBuilder(
@@ -64,6 +54,16 @@ public class DefaultStyleTest extends AbstractStyleFeaturesTest {
 
     private static StyleFeature strictBuilders() {
         return new StrictBuilder(ImmutableDefaultStyleBased.builder()::optionalString);
+    }
+
+    @Immutable
+    @DefaultStyle
+    interface DefaultStyleBased {
+
+        boolean isSomething();
+
+        Optional<String> getOptionalString();
+
     }
 
 }

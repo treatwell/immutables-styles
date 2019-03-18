@@ -32,7 +32,6 @@
             <property name="max" value="5"/>
         </module>
         <module name="InnerTypeLast"/>
-        <module name="ArrayTrailingComma"/>
         <module name="CovariantEquals"/>
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>

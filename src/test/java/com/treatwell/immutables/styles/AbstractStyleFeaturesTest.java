@@ -18,13 +18,13 @@ import com.treatwell.immutables.styles.features.StyleFeature;
 @RunWith(Parameterized.class)
 public abstract class AbstractStyleFeaturesTest {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
-
     @Parameter(0)
     public String featureName;
 
     @Parameter(1)
     public StyleFeatureCheck featureCheck;
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Before
     public void beforeEach() {
