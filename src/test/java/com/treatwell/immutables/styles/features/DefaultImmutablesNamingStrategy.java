@@ -1,6 +1,6 @@
 package com.treatwell.immutables.styles.features;
 
-import static com.treatwell.immutables.styles.constants.ClassNameMatchers.PREFIX_IMMUTABLE;
+import static com.treatwell.immutables.styles.constants.ClassNamePatterns.PREFIX_IMMUTABLE;
 
 public class DefaultImmutablesNamingStrategy extends NamingFeature {
 

@@ -1,6 +1,6 @@
 package com.treatwell.immutables.styles.features;
 
-import static com.treatwell.immutables.styles.constants.ClassNameMatchers.PREFIX_ABSTRACT;
+import static com.treatwell.immutables.styles.constants.ClassNamePatterns.PREFIX_ABSTRACT;
 
 public class AbstractStrippingNamingStrategy extends NamingFeature {
 

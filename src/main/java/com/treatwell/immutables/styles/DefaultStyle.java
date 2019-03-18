@@ -1,8 +1,8 @@
 package com.treatwell.immutables.styles;
 
-import static com.treatwell.immutables.styles.constants.ClassNameMatchers.PREFIX_IMMUTABLE;
-import static com.treatwell.immutables.styles.constants.MethodNameMatchers.PREFIX_GET;
-import static com.treatwell.immutables.styles.constants.MethodNameMatchers.PREFIX_IS;
+import static com.treatwell.immutables.styles.constants.ClassNamePatterns.PREFIX_IMMUTABLE;
+import static com.treatwell.immutables.styles.constants.AccessorNamePatterns.PREFIX_GET;
+import static com.treatwell.immutables.styles.constants.AccessorNamePatterns.PREFIX_IS;
 
 import org.immutables.value.Value.Style;
 
