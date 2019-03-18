@@ -12,15 +12,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
- * This defines the default style that we use for all our Immutable classes within the
- * Treatwell code. In particular, this allows for immutable objects to be used as the actual
- * DTO objects for a given service API. For example, we can define an API of:
- *
+ * This {@link Style} defines a default interface-based style for simple immutable objects.
+ * <p>
+ * Applied to a class as so:
  * <pre>{@code
- *  public interface VenueService {
- *      Venue findById(VenueId id);
- *  }
- *
  *  @Immutable
  *  @JsonSerialize(as = ImmutableVenue.class)
  *  @JsonDeserialize(as = ImmutableVenue.class)
@@ -31,11 +26,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  *  }
  * }</pre>
  * <p>
- * <p>
- * where the service implementation loads some data, and then converts it to an {@code ImmutableVenue}
- * either because the domain-class implements the Venue interface (e.g. {@code return ImmutableVenue.copyOf(domainVenue);}
- * or by using the explicit builder:
- *
+ * Generates an {@code ImmutableVenue} class that would be usable as so:
  * <pre>{@code
  * return ImmutableVenue.builder()
  *     .id(domainId)
@@ -44,8 +35,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  *     .build();
  * }</pre>
  * <p>
- * This annotation can be applied on within a {@code package-info.java} file to apply this style by default
- * to all code within the given package.
+ * With the added advantage of being automatically serializable by Jackson totally transparently.
  */
 @Style(
         // A. Properties defining how clients use the Immutables
