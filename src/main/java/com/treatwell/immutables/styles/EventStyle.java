@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * A style designed to be used to define classes that hold information about domain Events that have
- * occurred. An event class can be defined of the form:
- *
+ * A {@link Style} aimed at holding information about domain Events.
+ * <p>
+ * An event class can be defined as follows:
  * <pre>{@code
  *  @Immutable
  *  abstract class VenuePublished extends DomainEvent {
@@ -23,8 +23,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  *  }
  * }</pre>
  * <p>
- * which will cause an event class of {@code VenuePublishedEvent} to be generated to hold the actual
- * event information, and be sent over the wire (and possibly via RabbitMQ etc.)
+ * which will cause generation of a {@code VenuePublishedEvent} class as actual implementation for holding event information, for which an instance can be
+ * created as so:
+ * {@code return VenuePublishedEvent.builder().name(domainName) .build();}
+ * <p>
+ * It can then be sent over the wire between services, to and from queues (RabbitMQ, etc...)
+ *
+ * @implNote Due to (our) events having an {@code occuredAt} field, and deserialization of it <TBD after Steve explains it to my dumb self>
  */
 @Style(
         // A. Properties defining how clients use the Immutables
