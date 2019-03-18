@@ -21,7 +21,7 @@ public abstract class NamingFeature implements StyleFeature {
 
     @Override
     public String getHumanReadableFeatureName() {
-        final String output = "Naming strategy follows: %s*%s -> %s*%s";
+        final String output = "Naming strategy follows: %sXyz%s -> %sXyz%s";
         return String.format(output, annotatedPrefix, annotatedSuffix, generatedPrefix, generatedSuffix);
     }
 
