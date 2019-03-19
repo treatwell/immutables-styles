@@ -39,13 +39,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * This is a point that we'll seek to improve in the long run and why we consider this class as "unstable" for external use until we can avoid this mechanic.
  */
 @Style(
-        // A. Properties defining how clients use the Immutables
-
-        // Allow for simple boolean types as well.
-        get = {PREFIX_IS, PREFIX_GET}, // Allow for simple boolean types as well.
-        // Use a suffix of "Event"
+        /*
+         * API SPECIFICATION
+         * - Accessors are methods names get* or is*
+         * - Naming strategy is `Xyz` -> `XyzEvent`
+         * - Generated class is always public notwithstanding the annotated one's modifiers
+         */
+        get = {PREFIX_IS, PREFIX_GET},
         typeImmutable = SUFFIX_EVENT,
-        // Event definitions may be package-private, but we certainly want the impls to be public
         visibility = PUBLIC,
 
         // B. Internal implementation details
