@@ -27,9 +27,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * created as so:
  * {@code return VenuePublishedEvent.builder().name(domainName) .build();}
  * <p>
- * It can then be sent over the wire between services, to and from queues (RabbitMQ, etc...)
+ * It can then be sent over the wire between services, to and from queues (RabbitMQ, etc...).
  *
- * @implNote Due to (our) events having an {@code occuredAt} field, and deserialization of it <TBD after Steve explains it to my dumb self>
+ * @implNote The more observant might note {@link Style#jacksonIntegration()} being set to {@code false} here (in stark contrast with out other styles) and the
+ * absence of {@link com.fasterxml.jackson.databind.annotation.JsonSerialize} as well on the style class.
+ * The reason for it is that events (at least at Treatwell) have generated occurence time and id in their constructor.
+ * (Un)fortunately, Jackson being a good Java citizen attempts to use the constructor rather than field reflection when possible, which in this case
+ * means that it will ignore the serialized occurence time and id at deserialization and use new ones (as per the constructor's semantics).
+ * Thus we have to coerce Jackson, by voluntary adding a lack of serialization information, to use field reflection at deserialization time to avoid calling the
+ * constructor.
+ * This is a point that we'll seek to improve in the long run and why we consider this class as "unstable" for external use until we can avoid this mechanic.
  */
 @Style(
         // A. Properties defining how clients use the Immutables
@@ -56,17 +63,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         // to go and override them more easily when we want to.
         // forceJacksonPropertyNames = false
         )
-// We do NOT want to trigger Jackson serialization on event classes or else the id + occurredAt fields
-// are rebuilt to all new values during unmarshalling and then not preserved. One problem here is that
-// if people will have made Event classes but unwittingly marked them with Jackson annotations which will
-// then apply usual builder constraints during unmarshalling, but would reset id and occurredAt properties.
-// Happily to date, this hasn't happened.
-//
-// Options to enable this are:
-// 1. Mark the getters on DomainEvent as @Default rather than @Derived, but this allows clients to set
-//    them manually in the builder, which we would rather not permit, as it's more likely to go wrong.
-// 2. Wait for https://github.com/immutables/immutables/issues/690 to be fixed (or do it ourselves)
-// @JsonSerialize
+// Unstable API
+// Please carefully look at implementation notes to make sure the current state of it suits your usage.
 public @interface EventStyle {
 
 }
