@@ -32,7 +32,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * <pre>{@code
  *   Something instance = Something.builder()
  *       .id(1234L)
- *       .name("Steve Storey")
+ *       .name("Steve Storey") // allows null here, but would not without @Nullable annotation in abstract class definition
  *       .flagged(false)
  *       .build();
  * }</pre>
