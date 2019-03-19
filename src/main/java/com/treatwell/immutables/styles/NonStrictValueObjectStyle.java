@@ -15,24 +15,23 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
- * Style only to be used on objects which require non-strict builders for some specific (and documented!) reason.
- * One particular use-case is on objects that need to be merged with another instance of the same class,
- * and are those which should be treated almost exactly the same as the{@link ValueObjectStyle}, except that
- * non-strict builders are generated, so that we can use from() methods during the merge logic:
+ * This style is strictly the same as {@link ValueObjectStyle} except that it does generate "non-strict" builders.
+ * i.e. the builder to create instances of the generated immutable class WILL allow multiple setter calls for the same field.
  *
+ * e.g.:
  * <pre>{@code
- *  public OnlineBookingDefaults merge(OnlineBookingDefaults overrides) {
+ *  public MergeableThing merge(MergeableThing overrides) {
  *      if (overrides == null) {
- *          return OnlineBookingDefaults.copyOf(this);
+ *          return MergeableThing.copyOf(this);
  *      }
- *      return OnlineBookingDefaults.builder()
- *              .from(this)
- *              .from(overrides).build();
+ *      return MergeableThing.builder()
+ *              .from(this) // will call relevant setters
+ *              .from(overrides) // can call some of them again if overriden ones had values already
+ *              .build();
  *  }
  * }</pre>
- * <p>
- * All the other uses described in the {@link ValueObjectStyle} still apply. Any changes
- * made there, should be applied here as well.
+ *
+ * @see ValueObjectStyle for the general information on semantics unrelated to builder usage restrictions
  */
 @Style(
         // A. Properties defining how clients use the Immutables
@@ -62,7 +61,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
         forceJacksonPropertyNames = false
 
 )
-@JsonSerialize // Triggers Jackson integration on all users.
+@JsonSerialize
 public @interface NonStrictValueObjectStyle {
 
 }

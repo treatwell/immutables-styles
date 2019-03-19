@@ -15,41 +15,30 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
- * Immutables {@link Style} to define value-object classes; that is, classes with a single
- * implementation on which all the fields are immutable. This style means that you define:
- *
+ * Immutables {@link Style} to define value-object classes; that is, classes with a single implementation on which all the fields are immutable.
+ * <p>
+ * This style means that by defining:
  * <pre>{@code
- *   abstract class AbstractValueObject {
+ *   abstract class AbstractSomething {
  *       Long getId();
  *       @Nullable getName();
  *       boolean isFlagged();
  *   }
  * }</pre>
  * <p>
- * from which a single public implementation class ({@code ValueObject}) will be defined:
- *
- * <pre>{@code
- *   public final class ValueObject extends AbstractValueObject {
- *       Long getId() {...}
- *       @Nullable getName() {...}
- *       boolean isFlagged() {...}
- *
- *       public static ValueObject.Builder builder();
- *   }
- * }</pre>
  * <p>
- * which is then created via:
+ * A single public implementation class ({@code Something}) will be generated, and can be used as follows:
  *
  * <pre>{@code
- *   ValueObject vo = ValueObject.builder()
+ *   Something instance = Something.builder()
  *       .id(1234L)
  *       .name("Steve Storey")
  *       .flagged(false)
  *       .build();
  * }</pre>
  * <p>
- * Changes to this object (other than builder strictness), should also be applied to
- * the {@link NonStrictValueObjectStyle} configuration.
+ *
+ * @implSpec Changes to this object (other than builder strictness), should also be applied to {@link NonStrictValueObjectStyle}.
  */
 @Style(
         // A. Properties defining how clients use the Immutables
