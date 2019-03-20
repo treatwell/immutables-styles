@@ -1,8 +1,8 @@
 package com.treatwell.immutables.styles;
 
-import static com.treatwell.immutables.styles.constants.ClassNamePatterns.PREFIX_ABSTRACT;
 import static com.treatwell.immutables.styles.constants.AccessorNamePatterns.PREFIX_GET;
 import static com.treatwell.immutables.styles.constants.AccessorNamePatterns.PREFIX_IS;
+import static com.treatwell.immutables.styles.constants.ClassNamePatterns.PREFIX_ABSTRACT;
 import static org.immutables.value.Value.Style.ImplementationVisibility.PUBLIC;
 
 import javax.persistence.Access;

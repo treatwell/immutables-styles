@@ -1,8 +1,8 @@
 package com.treatwell.immutables.styles;
 
-import static com.treatwell.immutables.styles.constants.ClassNamePatterns.PREFIX_ABSTRACT;
 import static com.treatwell.immutables.styles.constants.AccessorNamePatterns.PREFIX_GET;
 import static com.treatwell.immutables.styles.constants.AccessorNamePatterns.PREFIX_IS;
+import static com.treatwell.immutables.styles.constants.ClassNamePatterns.PREFIX_ABSTRACT;
 import static org.immutables.value.Value.Style.ImplementationVisibility.PUBLIC;
 
 import javax.persistence.Access;
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 /**
  * This style is strictly the same as {@link ValueObjectStyle} except that it does generate "non-strict" builders.
  * i.e. the builder to create instances of the generated immutable class WILL allow multiple setter calls for the same field.
- *
+ * <p>
  * e.g.:
  * <pre>{@code
  *  public MergeableThing merge(MergeableThing overrides) {

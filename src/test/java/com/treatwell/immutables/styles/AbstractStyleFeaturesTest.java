@@ -12,8 +12,8 @@ import org.junit.runners.Parameterized.Parameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.treatwell.immutables.styles.features.StyleFeatureCheck;
 import com.treatwell.immutables.styles.features.StyleFeature;
+import com.treatwell.immutables.styles.features.StyleFeatureCheck;
 
 @RunWith(Parameterized.class)
 public abstract class AbstractStyleFeaturesTest {
