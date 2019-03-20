@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Style(
         /*
          * API SPECIFICATION
-         * - Accessors are methods names get* or is*
+         * - Accessors are methods with name prefixed with "get" or "is"
          * - Naming strategy is `Xyz` -> `XyzEvent`
          * - Generated class is always public notwithstanding the annotated one's modifiers
          */
@@ -49,23 +49,25 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         typeImmutable = SUFFIX_EVENT,
         visibility = PUBLIC,
 
-        // B. Internal implementation details
+        /*
+         * IMPLEMENTATION DETAILS
+         * - Optional fields allow `null` value being set, and translate this to an empty Optional
+         * - A private no-arg constructor is always generated, mostly to accomodate Hibernate and other such frameworks
+         * - Builder classes generated are `strict`, i.e. they only allow setting a property once (multiple sets of the same field often is involuntary)
+         */
+        optionalAcceptNullable = true,
+        privateNoargConstructor = true,
+        strictBuilder = true,
 
-        optionalAcceptNullable = true, // Optional<Xyz> expressly indicates that empty values are possible !?
-        privateNoargConstructor = true, // allow hibernate etc. to instantiate immutables
-        // We allow some specific annotations to be passed through when provided on the abstract
-        // class/interface, as they may be required on the underlying single public final implementation
-        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class},
-        // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
-        // so we enforce the use of strict builders for our event objects.
-        strictBuilder = true //,
-        // DISABLED FOR THE MOMENT ... - SEE BELOW
-        // We will let Jackson work its normal magic to compute property names, which also provides us the flexibility
-        // to go and override them more easily when we want to.
-        // forceJacksonPropertyNames = false
+        /*
+         * SERIALIZATION PROPERTIES
+         * - Common Jackson annotations are passed down to the generated class
+         * - Immutables is to *NOT* generate Jackson property names, and instead let Jackson infer those itself
+         */
+        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class}
         )
-// Unstable API
 // Please carefully look at implementation notes to make sure the current state of it suits your usage.
+// JACKSON-COMPATIBLE SUBCLASS IS *NOT* GENERATED. SEE CLASS IMPLEMENTATION NOTE
 public @interface EventStyle {
 
 }

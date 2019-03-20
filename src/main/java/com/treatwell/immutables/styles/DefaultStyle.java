@@ -40,7 +40,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Style(
         /*
          * API SPECIFICATION
-         * - Accessors are methods names get* or is*
+         * - Accessors are methods with name prefixed with "get" or "is"
          * - Naming strategy is `Xyz` -> `ImmutableXyz`
          */
         get = {PREFIX_IS, PREFIX_GET},
@@ -61,11 +61,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
          * - Common Jackson annotations are passed down to the generated class
          * - Immutables is to *NOT* generate Jackson property names, and instead let Jackson infer those itself
          */
-        passAnnotations = {
-                JsonTypeName.class,
-                JsonPropertyOrder.class,
-                JsonProperty.class
-        },
+        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class},
         forceJacksonPropertyNames = false
 )
 @JsonSerialize
