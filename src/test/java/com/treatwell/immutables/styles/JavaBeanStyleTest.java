@@ -1,6 +1,7 @@
 package com.treatwell.immutables.styles;
 
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.DEFAULT_IMMUTABLES_NAMING_STRATEGY;
+import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.RECOGNIZES_BOOLEAN_GETTERS;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.SERIALIZABLE_BY_JACKSON;
 
 import java.util.Collection;
@@ -17,6 +18,7 @@ public class JavaBeanStyleTest extends AbstractStyleFeaturesTest {
     public static Collection<Object[]> expectedFeatures() {
         return supportsFeatures(
                 SERIALIZABLE_BY_JACKSON,
+                RECOGNIZES_BOOLEAN_GETTERS,
                 DEFAULT_IMMUTABLES_NAMING_STRATEGY,
                 beanFriendlyModifiableClass()
         );
@@ -51,6 +53,8 @@ public class JavaBeanStyleTest extends AbstractStyleFeaturesTest {
     public interface MyBean {
 
         String getValue();
+
+        boolean isFlagged();
 
     }
 
