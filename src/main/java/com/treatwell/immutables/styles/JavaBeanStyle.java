@@ -1,8 +1,15 @@
 package com.treatwell.immutables.styles;
 
+import static com.treatwell.immutables.styles.constants.AccessorNamePatterns.PREFIX_GET;
+import static com.treatwell.immutables.styles.constants.AccessorNamePatterns.PREFIX_IS;
+import static com.treatwell.immutables.styles.constants.ClassNamePatterns.PREFIX_IMMUTABLE;
+
 import org.immutables.value.Value.Modifiable;
 import org.immutables.value.Value.Style;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
@@ -36,9 +43,26 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  *
  * @apiNote Usage of this style should always be in combination with {@link Modifiable}.
  */
-@Style(beanFriendlyModifiables = true, forceJacksonPropertyNames = false)
+@Style(
+        /*
+         * API SPECIFICATION
+         * - Accessors are methods with name prefixed with "get" or "is"
+         * - Naming strategy is `Xyz` -> `ImmutableXyz`
+         * - The @Modifiable-generated class is JavaBeans-compliant (void setters)
+         */
+        get = {PREFIX_IS, PREFIX_GET},
+        typeImmutable = PREFIX_IMMUTABLE,
+        beanFriendlyModifiables = true,
+
+        /*
+         * SERIALIZATION PROPERTIES
+         * - Common Jackson annotations are passed down to the generated class
+         * - Immutables is to *NOT* generate Jackson property names, and instead let Jackson infer those itself
+         */
+        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class},
+        forceJacksonPropertyNames = false
+)
 @JsonSerialize
 public @interface JavaBeanStyle {
 
 }
-
