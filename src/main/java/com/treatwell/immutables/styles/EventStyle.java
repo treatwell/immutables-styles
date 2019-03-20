@@ -65,7 +65,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
          * - Immutables is to *NOT* generate Jackson property names, and instead let Jackson infer those itself
          */
         passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class}
-        )
+)
 // Please carefully look at implementation notes to make sure the current state of it suits your usage.
 // JACKSON-COMPATIBLE SUBCLASS IS *NOT* GENERATED. SEE CLASS IMPLEMENTATION NOTE
 public @interface EventStyle {
