@@ -41,41 +41,38 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * @implSpec Changes to this object (other than builder strictness), should also be applied to {@link NonStrictValueObjectStyle}.
  */
 @Style(
-        // A. Properties defining how clients use the Immutables
-
-        // Allow for simple boolean types as well.
-        get = {PREFIX_IS, PREFIX_GET}, // Allow for simple boolean types as well.
-        // We expect the defining type to be an Abstract type
+        /*
+         * API SPECIFICATION
+         * - Accessors are methods with name prefixed with "get" or "is"
+         * - Naming strategy is `AbstractXyz` -> `Xyz`
+         * - Generated class is always public
+         */
+        get = {PREFIX_IS, PREFIX_GET},
         typeAbstract = PREFIX_ABSTRACT,
-        // Remove the 'Abstract' prefix from the public implementation
         typeImmutable = "*",
-        // We expect the abstract types to be non-public, and we want the impls to be public
         visibility = PUBLIC,
 
-        // B. Internal implementation details
-
-        optionalAcceptNullable = true, // Optional<Xyz> expressly indicates that empty values are possible !?
-        privateNoargConstructor = true, // allow hibernate etc. to instantiate immutables
-        // We allow some specific annotations to be passed through when provided on the abstract
-        // class/interface, as they may be required on the underlying single public final implementation
-        passAnnotations = {
-                JsonTypeName.class,
-                JsonPropertyOrder.class,
-                JsonProperty.class,
-                JsonSerialize.class,
-                Access.class
-        },
-        // Multiple calls to builder methods usually indicate copy/paste issues or possibly bugs,
-        // so we enforce the use of strict builders for our value objects (with the exception of
-        // Mergeable implementations, which should use the MergeableValueObjectStyle).
+        /*
+         * IMPLEMENTATION DETAILS
+         * - Optional fields allow `null` value being set, and translate this to an empty Optional
+         * - A private no-arg constructor is always generated, mostly to accomodate Hibernate and other such frameworks
+         * - Builder classes generated are `strict`, i.e. they only allow setting a property once (multiple sets of the same field often is involuntary)
+         * - Guava collections are never used by the generated classes, only standard JDK-included ones
+         */
+        optionalAcceptNullable = true,
+        privateNoargConstructor = true,
         strictBuilder = true,
-        // Ensure Guava collections are not used, since Spring converters do not support them
         jdkOnly = true,
-        // We will let Jackson work its normal magic to compute property names, which also provides us the flexibility
-        // to go and override them more easily when we want to.
+
+        /*
+         * SERIALIZATION PROPERTIES
+         * - Common Jackson annotations are passed down to the generated class
+         * - Immutables is to *NOT* generate Jackson property names, and instead let Jackson infer those itself
+         */
+        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, JsonSerialize.class, Access.class},
         forceJacksonPropertyNames = false
 )
-@JsonSerialize // Triggers Jackson integration on all users.
+@JsonSerialize
 public @interface ValueObjectStyle {
 
 }

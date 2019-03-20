@@ -49,7 +49,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
          * IMPLEMENTATION DETAILS
          * - Optional fields allow `null` value being set, and translate this to an empty Optional
          * - A private no-arg constructor is always generated, mostly to accomodate Hibernate and other such frameworks
-         * - Builder classes generated are `strict`, i.e. they only allow setting a property once (multiple sets of the same field often is involuntary)
+         * - Builder classes generated are *NOT* `strict`, i.e. they allow setting a given property multiple times
          * - Guava collections are never used by the generated classes, only standard JDK-included ones
          */
         optionalAcceptNullable = true,
