@@ -215,14 +215,25 @@
         </dependency>
     </dependencies>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>central-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
+    <repositories>
         <repository>
-            <id>central-release</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>treatwell-proxy</id>
+            <name>Treatwell Release Repository</name>
+            <url>http://mvn.twtools.io/repository/public/</url>
         </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>treatwell-nexus</id>
+            <name>Treatwell Nexus Release Repository</name>
+            <url>http://mvn.twtools.io/repository/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>treatwell-nexus</id>
+            <name>Treatwell Nexus Snapshot Repository</name>
+            <url>http://mvn.twtools.io/repository/snapshots</url>
+        </snapshotRepository>
     </distributionManagement>
+
 </project>
