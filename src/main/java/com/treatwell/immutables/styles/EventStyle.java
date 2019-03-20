@@ -16,11 +16,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * <p>
  * An event class can be defined as follows:
  * <pre>{@code
- *  @Immutable
- *  abstract class VenuePublished extends DomainEvent {
- *      private static final long serialVersionUID = 1L;
- *      String getName();
- *  }
+ *   @Immutable
+ *   abstract class VenuePublished extends DomainEvent {
+ *       private static final long serialVersionUID = 1L;
+ *       String getName();
+ *   }
  * }</pre>
  * <p>
  * which will cause generation of a {@code VenuePublishedEvent} class as actual implementation for holding event information, for which an instance can be

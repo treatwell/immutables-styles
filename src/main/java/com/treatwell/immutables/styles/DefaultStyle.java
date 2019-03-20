@@ -16,23 +16,23 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * <p>
  * Applied to a class as so:
  * <pre>{@code
- *  @Immutable
- *  @JsonSerialize(as = ImmutableVenue.class)
- *  @JsonDeserialize(as = ImmutableVenue.class)
- *  public interface Venue extends IdentifiedBy<VenueId> {
- *      VenueId getVenueId();
- *      String getName();
- *      List<SomethingElse> getOtherProperty();
- *  }
+ *   @Immutable
+ *   @JsonSerialize(as = ImmutableVenue.class)
+ *   @JsonDeserialize(as = ImmutableVenue.class)
+ *   public interface Venue extends IdentifiedBy<VenueId> {
+ *       VenueId getVenueId();
+ *       String getName();
+ *       List<SomethingElse> getOtherProperty();
+ *   }
  * }</pre>
  * <p>
  * Generates an {@code ImmutableVenue} class that would be usable as so:
  * <pre>{@code
- * return ImmutableVenue.builder()
- *     .id(domainId)
- *     .name(domainName)
- *     .otherProperty(emptyList())
- *     .build();
+ *   return ImmutableVenue.builder()
+ *       .id(domainId)
+ *       .name(domainName)
+ *       .otherProperty(emptyList())
+ *       .build();
  * }</pre>
  * <p>
  * With the added advantage of being serializable by Jackson transparently.

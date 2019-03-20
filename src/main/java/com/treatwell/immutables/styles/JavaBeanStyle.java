@@ -22,11 +22,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * <p>
  * For example, a class like:
  * <pre>{@code
- *  @Immutable
- * @JavaBeanStyle
- *  interface MyBean {
- *      String getValue();
- *  }
+ *   @Immutable
+ *   @JavaBeanStyle
+ *   interface MyBean {
+ *       String getValue();
+ *   }
  * }</pre>
  * <p>
  * Will generate both a standard immutable implementation usable with:

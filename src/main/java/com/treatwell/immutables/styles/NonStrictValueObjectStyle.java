@@ -20,15 +20,15 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * <p>
  * e.g.:
  * <pre>{@code
- *  public MergeableThing merge(MergeableThing overrides) {
- *      if (overrides == null) {
- *          return MergeableThing.copyOf(this);
- *      }
- *      return MergeableThing.builder()
- *              .from(this) // will call relevant setters
- *              .from(overrides) // can call some of them again if overriden ones had values already
- *              .build();
- *  }
+ *   public MergeableThing merge(MergeableThing overrides) {
+ *       if (overrides == null) {
+ *           return MergeableThing.copyOf(this);
+ *       }
+ *       return MergeableThing.builder()
+ *               .from(this) // will call relevant setters
+ *               .from(overrides) // can call some of them again if overriden ones had values already
+ *               .build();
+ *   }
  * }</pre>
  *
  * @see ValueObjectStyle for the general information on semantics unrelated to builder usage restrictions
