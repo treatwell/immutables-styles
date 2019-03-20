@@ -14,6 +14,7 @@ public final class AccessorNamePatterns {
     public static final String PREFIX_GET = "get*";
     public static final String PREFIX_IS = "is*";
 
+    // utility class
     private AccessorNamePatterns() {
     }
 
