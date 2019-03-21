@@ -14,9 +14,57 @@ While it is a wonderful library and offers quite a lot of customization, sometim
 - Requires manual annotation to generate hinted subclasses for FasterXML's wildly popular [Jackson](https://github.com/FasterXML) serialization library (Json, XML, Yaml,...)
 - Does offer a one-size-fits all sensible default that might not be suited to different specific object usages (DTOs, Events, Bean-conforming, and so on)
 
-This is why we have come up with pre-made specialized styles usable in various more or less specific cases depending on what you want to achieve.
+This is why we have come up with pre-made specialized styles for various use cases, so you do not have to :)
 
-### `@ValueObjectStyle`
+Following are sample common use-cases:
 
-The simplest type of POJOs. From an abstract class named `AbstractXYZ` it will generate and immutable instance named `XYZ` (like the default immutable setup),
-but will also automatically make it so that `XYZ` subclass is ready for serialization (and deserialization) using _Jackson_.
+### [`@ValueObjectStyle`](src/main/java/com/treatwell/immutables/styles/ValueObjectStyle.java)
+
+##### Sample annotated class:
+```java
+@Immutable
+@ValueObjectStyle
+public abstract class AbstractSomething {
+    @Parameter
+    public abstract String getValue();
+}
+```
+
+##### Declaration:
+```java
+public class MyService {
+    final Something thing = Something.of("Hello, World!"); // or long form with Something.builder().value(...).build();
+}
+```
+
+##### Serialization (with Spring Web relying on Jackson):
+```java
+@RestConstroller
+public class SomethingController {
+    @GetMapping
+    public Something getSomething(@RequestParameter("value") String value) {
+        return Something.of(value);
+    }
+}
+```
+
+### [`@DefaultStyle`](src/main/java/com/treatwell/immutables/styles/ValueObjectStyle.java)
+
+##### Sample annotated class:
+```java
+@Immutable
+@DefaultStyle
+public interface Something {
+    @Parameter
+    String getValue();
+}
+```
+
+##### Sample usage:
+```java
+public class MyService {
+    final Something thing = ImmutableSomething.of("Hello, World!"); // or long form with ImmutableSomething.builder().value(...).build();
+}
+```
+
+
