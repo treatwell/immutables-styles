@@ -33,7 +33,7 @@ public abstract class AbstractSomething {
 ##### Declaration:
 ```java
 public class MyService {
-    final Something thing = Something.of("Hello, World!"); // or long form with Something.builder().value(...).build();
+    final Something thing = Something.of("Hello, World!"); // or Something.builder().value(...).build();
 }
 ```
 
@@ -63,7 +63,7 @@ public interface Something {
 ##### Sample usage:
 ```java
 public class MyService {
-    final Something thing = ImmutableSomething.of("Hello, World!"); // or long form with ImmutableSomething.builder().value(...).build();
+    final Something thing = ImmutableSomething.of("Hello, World!"); // or ImmutableSomething.builder().value(...).build();
 }
 ```
 
