@@ -8,4 +8,4 @@ COPY .git ${workdir}/.git
 
 WORKDIR ${workdir}
 
-CMD ["/bin/bash", "-c", "mvn clean install"]
+CMD ["/bin/bash", "-c", "./scripts/ci.sh"]
