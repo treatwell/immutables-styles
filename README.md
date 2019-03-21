@@ -1,6 +1,6 @@
 # Treatwell's pre-made styles for [Immutables](https://immutables.github.io/)
 
-Build status: <insert badge>
+[![Build Status](http://jenkins.twtools.io/job/Open-source/job/Immutables%20Styles%20-%20OSS/6/badge/icon)](http://jenkins.twtools.io/job/Open-source/job/Immutables%20Styles%20-%20OSS/6/)
 
 Code quality thingy: <insert badge>
 
