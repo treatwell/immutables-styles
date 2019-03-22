@@ -4,7 +4,7 @@
 
 Code quality thingy: <insert badge>
 
-FOSS@Treatwell: <insert badge to some promotionnal job posting page because we might as well :)>
+FOSS@Treatwell: <insert badge to some promotional job posting page because we might as well :)>
 
 ## Meet _Treatwell_'s pre-made [Immutables](https://immutables.github.io/) `@Style`s!
 
@@ -22,7 +22,7 @@ There are many combinations of non-default features that we do enable for better
 - A wider variety of naming strategies to match the intended meaning of your data classes. Remembrance of the fact that
 ["There are only two hard things in Computer Science: cache invalidation and naming things."](https://martinfowler.com/bliki/TwoHardThings.html)
 - Out-of-the-box support for FasterXML's wildly popular [Jackson](https://github.com/FasterXML) serialization library, 
-which is also the de-facto standard Json/XML/Yaml seiralization library in the Java world
+which is also the _de facto_ standard Json/XML/Yaml serialization library in the Java world
 - Matching JavaBeans-like `get*` and `is*` accessor property names (instead of only `get*` by default)
 - Full support for most proxying frameworks, like Hibernate, by forcing the presence of a private no argument 
 constructor in generate classes
@@ -32,7 +32,7 @@ Otherwise, here are details about the two most common (and recommended for gener
 
 ## [`@ValueObjectStyle`](src/main/java/com/treatwell/immutables/styles/ValueObjectStyle.java)
 
-##### General charasteristics
+##### General characteristics
 - Client API:
   - **Naming strategy:** `AbstractXyz -> Xyz`
   - **Visibility:** The generated class is always *`public`*
@@ -110,7 +110,7 @@ If serialization is the major concern, `@ValueObjectStyle` will be the most conv
 
 If on the other hand, you have a deep hierarchy, it is much easier to manage it with `@DefaultStyle` and its
 interface-based annotated classes:
-1. The naming strategy (`Xyz -> ImmutableXyz`) is unwieldly, but does not matter a lot as we will mostly be
+1. The naming strategy (`Xyz -> ImmutableXyz`) is unwieldy, but does not matter a lot as we will mostly be
 using the annotated one.
 2. Despite the annotated class not being serializable out of the box, you can work around it by using the 
 generated one (which *is* (de)serializable in this case) as parameters and return types in controllers.
