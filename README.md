@@ -68,6 +68,8 @@ public class PersonController {
     @PostMapping
     public Person createPersonWithName(@RequestParameter("name") String name) {
         Person newPerson = Person.of(name, Instant.now());
+                     // or Person.builder().name(name).creationTime(Instant.now()).build();
+        
         personDao.savePerson(newPerson);
         return newPerson; // automatically serialized by Jackson
     }
@@ -89,15 +91,14 @@ public interface Something {
 ##### Sample usage:
 ```java
 public class MyService {
-    final Something thing = ImmutableSomething.of("Hello, World!"); // or ImmutableSomething.builder().value(...).build();
+    final Something thing = ImmutableSomething.of("Hello, World!");
+                      // or ImmutableSomething.builder().value(...).build();
 }
 ```
 
 ## When to use which?
 The main difference is relating to whether you want to manipulate the concrete (generated) class 
-(i.e. [@ValueObjectStyle](#valueobjectstylesrcmainjavacomtreatwellimmutablesstylesvalueobjectstylejava)) 
-and be mostly blind to the abstract (annotated) one, or the contrary 
-(i.e. [@DefaulStyle](#defaultstylesrcmainjavacomtreatwellimmutablesstylesvalueobjectstylejava)).
+(i.e. `@ValueObjectStyle`) and be mostly blind to the abstract (annotated) one, or the contrary (i.e. `@DefaultStyle`).
 
 There are various reason for choosing either, but it will mostly boil down to which of *serialization* and/or *inheritance*
 is the bigger concern for your specific case.
