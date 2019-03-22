@@ -1,4 +1,4 @@
-# _Treatwell_'s [Immutables](https://immutables.github.io/) `@Style`s
+# _Treatwell_'s [Immutables](https://immutables.github.io/) style extensions
 
 [![Build Status](http://jenkins.twtools.io/job/Open-source/job/Immutables%20Styles%20-%20OSS/6/badge/icon)](http://jenkins.twtools.io/job/Open-source/job/Immutables%20Styles%20-%20OSS/6/)
 
