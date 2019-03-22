@@ -1,4 +1,4 @@
-# Treatwell's pre-made styles for [Immutables](https://immutables.github.io/)
+# _Treatwell_'s [Immutables](https://immutables.github.io/) `@Style`s
 
 [![Build Status](http://jenkins.twtools.io/job/Open-source/job/Immutables%20Styles%20-%20OSS/6/badge/icon)](http://jenkins.twtools.io/job/Open-source/job/Immutables%20Styles%20-%20OSS/6/)
 
@@ -31,34 +31,45 @@ You will find [the styles that we came up with over the years here.](src/main/ja
 Otherwise, here are details about the two most common (and recommended for general use) ones.
 
 ## [`@ValueObjectStyle`](src/main/java/com/treatwell/immutables/styles/ValueObjectStyle.java)
+
 ##### General charasteristics
-- Name: `AbstractXyz -> Xyz`
-- Accessor names: `get*, is*`
+- Client API:
+  - **Naming strategy:** `AbstractXyz -> Xyz`
+  - **Visibility:** The generated class is always *`public`*
+- Internal implementation:
+  - **Strict builders:** Copy and pasting is a dangerous habit, but we are always better safe than sorry. Which is why you
+  cannot set a builder's value multiple times in a row
+  - **`Optional` and `null`:** Setting `null` as value for an `Optional` field will alias it to `Optional#empty`
+  (like `Optional#ofNullable`) does
+  - **Proxying frameworks compatibility** (Hibernate etc.): Supported via generated private no-arg constructor
+- **Serializable:** out of the box with Jackson
+  - Leaves serialized field name inference to Jackson rather than using Immutables' inference system
 
 ##### Sample annotated class:
 ```java
 @Immutable
 @ValueObjectStyle
-public abstract class AbstractSomething {
+public abstract class AbstractPerson {
     @Parameter
-    public abstract String getValue();
+    public abstract String getName();
+    
+    @Parameter
+    public abstract Instant creationTime();
 }
 ```
 
-##### Declaration:
-```java
-public class MyService {
-    final Something thing = Something.of("Hello, World!"); // or Something.builder().value(...).build();
-}
-```
-
-##### Serialization (with Spring Web relying on Jackson):
+##### Example of simplified usage in a controller managed with Spring Web:
 ```java
 @RestConstroller
-public class SomethingController {
-    @GetMapping
-    public Something getSomething(@RequestParameter("value") String value) {
-        return Something.of(value);
+public class PersonController {
+    
+    PersonDao personDao;
+    
+    @PostMapping
+    public Person createPersonWithName(@RequestParameter("name") String name) {
+        Person newPerson = Person.of(name, Instant.now());
+        personDao.savePerson(newPerson);
+        return newPerson; // automatically serialized by Jackson
     }
 }
 ```
@@ -82,4 +93,27 @@ public class MyService {
 }
 ```
 
+## When to use which?
+The main difference is relating to whether you want to manipulate the concrete (generated) class 
+(i.e. [@ValueObjectStyle](#valueobjectstylesrcmainjavacomtreatwellimmutablesstylesvalueobjectstylejava)) 
+and be mostly blind to the abstract (annotated) one, or the contrary 
+(i.e. [@DefaulStyle](#defaultstylesrcmainjavacomtreatwellimmutablesstylesvalueobjectstylejava)).
+
+There are various reason for choosing either, but it will mostly boil down to which of *serialization* and/or *inheritance*
+is the bigger concern for your specific case.
+
+If serialization is the major concern, `@ValueObjectStyle` will be the most convenient:
+1. The naming strategy for it (`AbstractXyz -> Xyz`) makes it much cleaner to use the generated class
+2. This generated class is directly (de)serializable without supplementary code/effort as it is the generated one
+  - on the other hand, (de)serializing the abstract class requires adding `@Json{S, Des}erialize(as = ...)` to it
+
+If on the other hand, you have a deep hierarchy, it is much easier to manage it with `@DefaultStyle` and its
+interface-based annotated classes:
+1. The naming strategy (`Xyz -> ImmutableXyz`) is unwieldly, but does not matter a lot as we will mostly be
+using the annotated one.
+2. Despite the annotated class not being serializable out of the box, you can work around it by using the 
+generated one (which *is* (de)serializable in this case) as parameters and return types in controllers.
+
+To wrap this up, `@ValueObjectStyle` should be mostly sufficient in almost all cases that do not require support for
+complex class hierarchies.
 
