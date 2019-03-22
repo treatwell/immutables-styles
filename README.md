@@ -6,19 +6,34 @@ Code quality thingy: <insert badge>
 
 FOSS@Treatwell: <insert badge to some promotionnal job posting page because we might as well :)>
 
-## Make your immutable classes _glow_ with some of our `@Style`s!
+## Meet _Treatwell_'s pre-made [Immutables](https://immutables.github.io/) `@Style`s!
 
-With Immutables, you can generate safe immutable implementations for your instances, rather than writing the POJO boilerplate yourself.
+Data immutability inside code offers many a valuable advantage. Alas, sometimes it is still difficult to manage the jump from
+theory to practical usage.
 
-While it is a wonderful library and offers quite a lot of customization, sometimes the defaults are not exactly as we often might use them:
-- Requires manual annotation to generate hinted subclasses for FasterXML's wildly popular [Jackson](https://github.com/FasterXML) serialization library (Json, XML, Yaml,...)
-- Does offer a one-size-fits all sensible default that might not be suited to different specific object usages (DTOs, Events, Bean-conforming, and so on)
+For that goal, at _Treatwell_, we are huge fans of the [Immutables](https://immutables.github.io/) library, 
+which is why we built custom styl stylistic extensions to it so that we can mix it into our our existing 
+codebase efficiently which has been a great success so far.
 
-This is why we have come up with pre-made specialized styles for various use cases, so you do not have to :)
+Because sharing is caring, we decided to share these with the wider audience, and hopefully you find as much enjoyment to
+using these as we did and still do!
 
-Following are sample common use-cases:
+There are many combinations of non-default features that we do enable for better usage quality-of-life, here's a few:
+- A wider variety of naming strategies to match the intended meaning of your data classes. Remembrance of the fact that
+["There are only two hard things in Computer Science: cache invalidation and naming things."](https://martinfowler.com/bliki/TwoHardThings.html)
+- Out-of-the-box support for FasterXML's wildly popular [Jackson](https://github.com/FasterXML) serialization library, 
+which is also the de-facto standard Json/XML/Yaml seiralization library in the Java world
+- Matching JavaBeans-like `get*` and `is*` accessor property names (instead of only `get*` by default)
+- Full support for most proxying frameworks, like Hibernate, by forcing the presence of a private no argument 
+constructor in generate classes
 
-### [`@ValueObjectStyle`](src/main/java/com/treatwell/immutables/styles/ValueObjectStyle.java)
+You will find [the styles that we came up with over the years here.](src/main/java/com/treatwell/immutables/styles)
+Otherwise, here are details about the two most common (and recommended for general use) ones.
+
+## [`@ValueObjectStyle`](src/main/java/com/treatwell/immutables/styles/ValueObjectStyle.java)
+##### General charasteristics
+- Name: `AbstractXyz -> Xyz`
+- Accessor names: `get*, is*`
 
 ##### Sample annotated class:
 ```java
