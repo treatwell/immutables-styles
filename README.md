@@ -63,7 +63,7 @@ public abstract class AbstractPerson {
 @RestConstroller
 public class PersonController {
     
-    PersonDao personDao;
+    private final PersonDao personDao;
     
     @PostMapping
     public Person createPersonWithName(@RequestParameter("name") String name) {
@@ -82,17 +82,37 @@ public class PersonController {
 ```java
 @Immutable
 @DefaultStyle
-public interface Something {
+@JsonSerialize(as = ImmutableCount.class)
+@JsonDeserialize(as = ImmutableCount.class)
+public interface Count {
+    
     @Parameter
-    String getValue();
+    int getCount();
+    
+    @Parameter
+    Instant getLastIncrementTime();
+    
 }
 ```
 
-##### Sample usage:
+##### Example of simplified usage in a rest controller:
 ```java
-public class MyService {
-    final Something thing = ImmutableSomething.of("Hello, World!");
-                      // or ImmutableSomething.builder().value(...).build();
+@RestController
+public class MyCountService {
+
+    private final AtomicReference<Count> currentCount = new AtomicReference<>(ImmutableCount.of(0, LocalDateTime.now()));
+
+    @PostMapping
+    public void incrementCount(Count count) {
+        Count oldCount = currentCount.get();
+        currentCount.set(ImmutableCount.of(count.getCount() + oldCount.getCount(), count.getLastIncrementTime()));
+    }
+
+    @GetMapping
+    public Count getCurrent() {
+        return currentCount.get();
+    }
+
 }
 ```
 
