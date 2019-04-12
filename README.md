@@ -4,7 +4,7 @@
 
 Code quality thingy: <insert badge>
 
-FOSS@Treatwell: <insert badge to some promotional job posting page because we might as well :)>
+[![Open source at Treatwell](https://img.shields.io/badge/open%20source%20%40-treatwell-3ba150.svg)](https://treatwell.com/tech)
 
 ## Meet _Treatwell_'s pre-made [Immutables](https://immutables.github.io/) `@Style`s!
 
