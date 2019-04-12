@@ -82,9 +82,9 @@ public class PersonController {
 ```java
 @Immutable
 @DefaultStyle
-@JsonSerialize(as = ImmutableCount.class)   // here because the class reference directly is the abstract one
-@JsonDeserialize(as = ImmutableCount.class) // instead of the generated one, Jackson needs extra help
-public interface Count {                    // N.B.: only if you don't use the generated one in method signatures instead
+@JsonSerialize(as = ImmutableCount.class)   // because jackson will only see the abstract type
+@JsonDeserialize(as = ImmutableCount.class) // instead of the generated one, it needs extra help
+public interface Count {                    // N.B.: not needed if exclusively using ImmutableCount
     
     @Parameter
     int getCount();
