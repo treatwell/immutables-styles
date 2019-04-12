@@ -18,14 +18,15 @@ Please note we have a code of conduct, please follow it in all your interactions
 ## Pull Request Process
 
 1. Ensure any change in behavior is agreed upon with maintainers, well-documented and tested.
-2. Update the CHANGELOG.md with details of changes to the interface, this includes any breaking or
-   minor change. Add a reference to the Github issue relating to this change as exemplified in this
-   file.
+2. Update the [CHANGELOG](./CHANGELOG.md) with details of changes to the interface ; 
+   this includes any breaking or minor change. Add a reference to the Github issue relating to 
+   this change as exemplified in this file.
 3. Do not increase version numbers as `master` is always a snapshot and we will take care of the
    version update when we release and publish an artifact.
 4. Please understand that we cannot dedicate ourselves to always reacting immediately to any
    request and that thus you might have to wait a little bit before we have a chance to look at
    pull requests. However, we will do our best to do so in a timely manner.
+5. You understand that any code you submit falls under [the license of the project](./LICENSE.md).
 
 ## Code of Conduct
 
