@@ -35,7 +35,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * <p>
  * This style means that by defining:
  * <pre>{@code
- *   abstract class AbstractSomething {
+ *   package-private abstract class AbstractSomething {
  *       Long getId();
  *       @Nullable getName();
  *       boolean isFlagged();

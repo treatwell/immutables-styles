@@ -35,7 +35,7 @@ Otherwise, here are details about the two most common (and recommended for gener
 ##### General characteristics
 - Client API:
   - **Naming strategy:** `AbstractXyz -> Xyz`
-  - **Visibility:** The generated class is always *`public`*
+  - **Visibility:** The generated class is always *`public`*, which allows for keeping the abstract one package-private
 - Internal implementation:
   - **Strict builders:** Copy and pasting is a dangerous habit, but we are always better safe than sorry. Which is why you
   cannot set a builder's value multiple times in a row
@@ -49,7 +49,7 @@ Otherwise, here are details about the two most common (and recommended for gener
 ```java
 @Immutable
 @ValueObjectStyle
-public abstract class AbstractPerson {
+/* package-private */ abstract class AbstractPerson {
     @Parameter
     public abstract String getName();
     
@@ -134,6 +134,9 @@ interface-based annotated classes:
 using the annotated one.
 2. Despite the annotated class not being serializable out of the box, you can work around it by using the 
 generated one (which *is* (de)serializable in this case) as parameters and return types in controllers.
+
+A last point is that `@ValueObjectStyle` allows keeping the abstract class package-private which could be useful to
+make sure to avoid involuntary usage/inheritance of the abstract one.
 
 To wrap this up, `@ValueObjectStyle` should be mostly sufficient in almost all cases that do not require support for
 complex class hierarchies.

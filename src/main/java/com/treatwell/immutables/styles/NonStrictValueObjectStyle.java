@@ -36,7 +36,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * <p>
  * e.g.:
  * <pre>{@code
- *   public MergeableThing merge(MergeableThing overrides) {
+ *   package-private MergeableThing merge(MergeableThing overrides) {
  *       if (overrides == null) {
  *           return MergeableThing.copyOf(this);
  *       }
