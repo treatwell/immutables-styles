@@ -80,7 +80,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
         passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class},
         forceJacksonPropertyNames = false
 )
-@JsonSerialize
+@JsonSerialize // Triggers Jackson serialization support
 public @interface DefaultStyle {
 
 }
