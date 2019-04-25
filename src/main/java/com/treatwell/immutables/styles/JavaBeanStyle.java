@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
- * This {@link Style} is used when we require Java Beans-like support for frameworks delegation (Hibernate & co for example).
+ * This {@link Style} is used when we require Java Beans-like support for frameworks delegation (one use-case at Treatwell is usage from within JSF).
  * <p>
  * Immutables' default style, when combined with their {@link Modifiable} (here always always) generates an additional subclass that can be converted to
  * and from standard immutable implementation to have support for setters. Unfortunately, the default style does not guarantee that bean-like methods will be
@@ -60,23 +60,24 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * @apiNote Usage of this style should always be in combination with {@link Modifiable}.
  */
 @Style(
-        /*
-         * API SPECIFICATION
-         * - Accessors are methods with name prefixed with "get" or "is"
-         * - Naming strategy is `Xyz` -> `ImmutableXyz`
-         * - The @Modifiable-generated class is JavaBeans-compliant (void setters)
-         */
-        get = {PREFIX_IS, PREFIX_GET},
-        typeImmutable = PREFIX_IMMUTABLE,
-        beanFriendlyModifiables = true,
+    /*
+     * API SPECIFICATION
+     * - Accessors are methods with name prefixed with "get" or "is" (for simple booleans)
+     * - Naming strategy is `Xyz` -> `ImmutableXyz`
+     * - The @Modifiable-generated class is JavaBeans-compliant (void setters)
+     */
+    get = {PREFIX_IS, PREFIX_GET},
+    typeImmutable = PREFIX_IMMUTABLE,
+    beanFriendlyModifiables = true,
 
-        /*
-         * SERIALIZATION PROPERTIES
-         * - Common Jackson annotations are passed down to the generated class
-         * - Immutables is to *NOT* generate Jackson property names, and instead let Jackson infer those itself
-         */
-        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class},
-        forceJacksonPropertyNames = false
+    /*
+     * SERIALIZATION PROPERTIES
+     * - Common Jackson annotations are passed down to the generated class (as they may be required on the underlying final implementation class)
+     * - Immutables is to *NOT* generate Jackson property names, and instead let Jackson infer those itself, while we can still override the automatic ones
+     * when needed
+     */
+    passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class},
+    forceJacksonPropertyNames = false
 )
 @JsonSerialize // Triggers Jackson serialization support
 public @interface JavaBeanStyle {

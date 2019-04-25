@@ -50,36 +50,39 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * @see ValueObjectStyle for the general information on semantics unrelated to builder usage restrictions
  */
 @Style(
-        /*
-         * API SPECIFICATION
-         * - Accessors are methods with name prefixed with "get" or "is"
-         * - Naming strategy is `AbstractXyz` -> `Xyz`
-         * - Generated class is always public
-         */
-        get = {PREFIX_IS, PREFIX_GET},
-        typeAbstract = PREFIX_ABSTRACT,
-        typeImmutable = "*",
-        visibility = PUBLIC,
+    /*
+     * API SPECIFICATION
+     * - Accessors are methods with name prefixed with "get" or "is" (for simple booleans)
+     * - Naming strategy is `AbstractXyz` -> `Xyz`
+     * - Generated class is always public while allowing (and expecting) the definition class to stay package-private
+     */
+    get = {PREFIX_IS, PREFIX_GET},
+    typeAbstract = PREFIX_ABSTRACT,
+    typeImmutable = "*",
+    visibility = PUBLIC,
 
-        /*
-         * IMPLEMENTATION DETAILS
-         * - Optional fields allow `null` value being set, and translate this to an empty Optional
-         * - A private no-arg constructor is always generated, mostly to accomodate Hibernate and other such frameworks
-         * - Builder classes generated are *NOT* `strict`, i.e. they allow setting a given property multiple times
-         * - Guava collections are never used by the generated classes, only standard JDK-included ones
-         */
-        optionalAcceptNullable = true,
-        privateNoargConstructor = true,
-        strictBuilder = false,
-        jdkOnly = true,
+    /*
+     * IMPLEMENTATION DETAILS
+     * - Optional fields allow `null` value being set, and translates this to an empty Optional when null values are passed to the builder methods
+     * - A private no-arg constructor is always generated, mostly to accomodate Hibernate and other such frameworks
+     * - Builder classes generated are *NOT* `strict`, i.e. they allow setting a given property multiple times (we recommend making sure the use case for
+     * this specificity to be well-documented and exceptionnal). One particular use-case is on objects that need to be `merged` with another instance of the
+     * same class.
+     * - Guava collections are to never be used by the generated classes for compatibility reasons with Spring & friends
+     */
+    optionalAcceptNullable = true,
+    privateNoargConstructor = true,
+    strictBuilder = false,
+    jdkOnly = true,
 
-        /*
-         * SERIALIZATION PROPERTIES
-         * - Common Jackson annotations are passed down to the generated class
-         * - Immutables is to *NOT* generate Jackson property names, and instead let Jackson infer those itself
-         */
-        passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, JsonSerialize.class, Access.class},
-        forceJacksonPropertyNames = false
+    /*
+     * SERIALIZATION PROPERTIES
+     * - Common Jackson annotations are passed down to the generated class (as they may be required on the underlying final implementation class)
+     * - Immutables is to *NOT* generate Jackson property names, and instead let Jackson infer those itself, while we can still override the automatic ones
+     * when needed
+     */
+    passAnnotations = {JsonTypeName.class, JsonPropertyOrder.class, JsonProperty.class, JsonSerialize.class, Access.class},
+    forceJacksonPropertyNames = false
 )
 @JsonSerialize // Triggers Jackson serialization support
 public @interface NonStrictValueObjectStyle {
