@@ -22,7 +22,7 @@ MANIFEST.MF
 
 
 # Intellij
-.idea/
+.idea/*
 *.iml
 *.iws
 .recommenders
@@ -30,3 +30,5 @@ MANIFEST.MF
 # emacs temp files
 *~
 
+!.idea/copyright
+!.idea/checkstyle-idea.xml
