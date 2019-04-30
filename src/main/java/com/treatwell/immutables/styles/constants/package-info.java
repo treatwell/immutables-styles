@@ -16,6 +16,7 @@
 
 /**
  * This package is here to avoid magic strings where possible.
- * Unfortunately, due to the enforced static nature of annotations' parameters, we cannot extract a whole lot.
+ * Unfortunately, due to the enforced static nature of annotations' parameters, we cannot extract a whole
+ * lot without going the route of utility classes with static {@link java.lang.String} constants.
  */
 package com.treatwell.immutables.styles.constants;
