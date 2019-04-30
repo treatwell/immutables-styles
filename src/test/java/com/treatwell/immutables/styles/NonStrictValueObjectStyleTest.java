@@ -31,7 +31,7 @@ import org.junit.runners.Parameterized;
 import com.treatwell.immutables.styles.features.CanPassNullForOptionalEmptyInBuilder;
 import com.treatwell.immutables.styles.features.StyleFeature;
 
-public class NonStrictValueObjectStyleTest extends AbstractStyleFeaturesTest {
+public class NonStrictValueObjectStyleTest extends StyleFeaturesTest {
 
     @Parameterized.Parameters(name = "{0}")
     public static Collection<Object[]> expectedFeatures() {

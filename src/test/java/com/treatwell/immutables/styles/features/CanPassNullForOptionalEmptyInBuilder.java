@@ -22,7 +22,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class CanPassNullForOptionalEmptyInBuilder implements ComplexStyleFeature {
+public class CanPassNullForOptionalEmptyInBuilder implements ImplementationBehaviorStyleFeature {
 
     private final Consumer<String> builderSetter;
     private final Supplier<Optional<String>> instanceGetter;

@@ -28,7 +28,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 import com.treatwell.immutables.styles.features.BeanFriendlyModifiable;
 
-public class JavaBeanStyleTest extends AbstractStyleFeaturesTest {
+public class JavaBeanStyleTest extends StyleFeaturesTest {
 
     @Parameters(name = "{0}")
     public static Collection<Object[]> expectedFeatures() {
