@@ -22,7 +22,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class BeanFriendlyModifiable implements ComplexStyleFeature {
+public class BeanFriendlyModifiable implements ImplementationBehaviorStyleFeature {
 
     private final Consumer<String> setter;
     private final Supplier<String> getter;

@@ -16,15 +16,18 @@
 
 package com.treatwell.immutables.styles.constants;
 
-import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Style;
 
 /**
- * The types of matchers we use for {@link Immutable}-annotated classes' name to be parsed to generate more specific subclasses than always going the (default)
- * {@code Xyz -> ImmutableXyz} but instead to be able to have {@code AbstractXyz -> Xyz}.
+ * These patterns are used to instruct Immutables on how to scan for abstract classes for which to generate concrete immutable implementations, and how to name
+ * these implementations.
+ * <p>
+ * The default one used by the library itself does the following: {@code Xyz -> ImmutableXyz}.
+ * With something like {@link #PREFIX_ABSTRACT} we instead get {@code AbstractXyz -> Xyz} for example.
  *
- * @see Style#typeAbstract() for the annotated class name pattern matching
- * @see Style#typeImmutable() for the generated class' name composition pattern
+ * @see Style#typeAbstract() for the annotated class' name pattern matching
+ * @see Style#typeImmutable() for the generated class' name pattern replacement
+ * @see AccessorNamePatterns for the accessor-level sibling of this one
  */
 public final class ClassNamePatterns {
 

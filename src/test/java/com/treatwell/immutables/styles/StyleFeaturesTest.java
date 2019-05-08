@@ -18,6 +18,8 @@ package com.treatwell.immutables.styles;
 
 import java.util.Arrays;
 import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import org.junit.Before;
@@ -29,10 +31,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.treatwell.immutables.styles.features.StyleFeature;
-import com.treatwell.immutables.styles.features.StyleFeatureCheck;
 
 @RunWith(Parameterized.class)
-public abstract class AbstractStyleFeaturesTest {
+public abstract class StyleFeaturesTest {
 
     @Parameter(0)
     public String featureName;
@@ -60,9 +61,19 @@ public abstract class AbstractStyleFeaturesTest {
 
     protected static Set<Object[]> supportsFeatures(StyleFeature... styleFeatures) {
         return Arrays.stream(styleFeatures).map(styleFeature -> new Object[]{
-                styleFeature.getHumanReadableFeatureName(),
-                (StyleFeatureCheck) styleFeature::assertFeature
+            styleFeature.getHumanReadableFeatureName(),
+            (StyleFeatureCheck) styleFeature::assertFeature
         }).collect(Collectors.toSet());
+    }
+
+    /**
+     * This is merely the equivalent of a type alias to have cleaner definition of this class
+     * Aliases a 3-parameter {@link Consumer}. Think {@link BiConsumer} but for 3 parameters, all {@link Class} instances.
+     */
+    private interface StyleFeatureCheck {
+
+        void ensureFeature(Class<?> styleClass, Class<?> annotated, Class<?> generated);
+
     }
 
 }

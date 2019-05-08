@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.function.Consumer;
 
-public class StrictBuilder implements ComplexStyleFeature {
+public class StrictBuilder implements ImplementationBehaviorStyleFeature {
 
     private final Consumer<String> builderSetter;
 
