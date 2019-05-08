@@ -1,9 +1,5 @@
 # _Treatwell_'s [Immutables](https://immutables.github.io/) style extensions
 
-[![Build Status](http://jenkins.twtools.io/job/Open-source/job/Immutables%20Styles%20-%20OSS/badge/icon)](http://jenkins.twtools.io/job/Open-source/job/Immutables%20Styles%20-%20OSS/)
-
-Code quality thingy: badge goes here
-
 [![Open source at Treatwell](https://img.shields.io/badge/open%20source%20%40-treatwell-3ba150.svg)](https://treatwell.com/tech)
 
 ## Meet _Treatwell_'s pre-made [Immutables](https://immutables.github.io/) `@Style`s!
