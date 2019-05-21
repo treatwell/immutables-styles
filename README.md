@@ -1,13 +1,15 @@
 <div align="center">
     <img src="https://cdn1.treatwell.net/images/view/v2.i1756510.w280.h180.x35087788.png" />
-    <p></p>
+    <h4>Style extensions for the <a href="https://immutables.github.io/">Immutables</a> library by</h4>
     <img style="border-radius: 10%;" src="https://cdn1.treatwell.net/images/view/v2.i1756348.w200.h50.x4965194E.png" />
 </div>
 
-##### Style extensions for the [Immutables](https://immutables.github.io/) library !
+___
 
-![Maven Central](https://img.shields.io/maven-central/v/com.treatwell/immutables-styles.svg?style=for-the-badge)
-![License](https://img.shields.io/github/license/treatwell/immutables-styles.svg?style=for-the-badge)
+<div align="center>
+    <img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.treatwell/immutables-styles.svg?style=for-the-badge">
+    <img alt="License" src="https://img.shields.io/github/license/treatwell/immutables-styles.svg?style=for-the-badge">
+</div>
 
 ### Meet our `@Style`s!
 
