@@ -1,0 +1,33 @@
+# Build directories
+target/
+build/
+bin
+node_modules
+.sass-cache
+
+# Eclipse IDE files
+.settings
+.classpath
+.project
+.checkstyle
+.springBeans
+.factorypath
+.pydevproject
+.apt_generated/
+.apt_generated_tests/
+.externalToolBuilders/
+
+MANIFEST.MF
+.DS_Store
+
+
+# Intellij
+.idea/*
+*.iml
+*.iws
+.recommenders
+
+# emacs temp files
+*~
+
+!.idea/checkstyle-idea.xml
