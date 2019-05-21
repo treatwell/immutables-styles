@@ -26,7 +26,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 4. Please understand that we cannot dedicate ourselves to always reacting immediately to any
    request and that thus you might have to wait a little bit before we have a chance to look at
    pull requests. However, we will do our best to do so in a timely manner.
-5. You understand that any code you submit falls under [the license of the project](./LICENSE.md).
+5. You understand that any code you submit falls under [the license of the project](LICENSE).
 
 ## Code of Conduct
 

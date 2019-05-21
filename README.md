@@ -1,6 +1,6 @@
-# _Treatwell_'s [Immutables](https://immutables.github.io/) style extensions
+# _Treatwell_'s [Immutables](https://immutables.github.io/) styles
 
-[![Open source at Treatwell](https://img.shields.io/badge/open%20source%20%40-treatwell-3ba150.svg)](https://treatwell.com/tech)
+[![Open source at Treatwell](https://cdn1.treatwell.net/images/view/v2.i1756348.w200.h50.x4965194E.png)](https://treatwell.com/tech)
 
 ## Meet _Treatwell_'s pre-made [Immutables](https://immutables.github.io/) `@Style`s!
 
