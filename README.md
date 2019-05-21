@@ -1,13 +1,15 @@
 <p align="center"><img src="https://cdn1.treatwell.net/images/view/v2.i1756510.w280.h180.x35087788.png" /></p>
+<div align="center">
+    <p>Brought to you by</p>
+    <img src="https://cdn1.treatwell.net/images/view/v2.i1756348.w200.h50.x4965194E.png" />
+</div>
 
-##### _Treatwell_'s style extensions for the [Immutables](https://immutables.github.io/) library !
+##### Style extensions for the [Immutables](https://immutables.github.io/) library !
 
 ![Maven Central](https://img.shields.io/maven-central/v/com.treatwell/immutables-styles.svg?style=for-the-badge)
 ![License](https://img.shields.io/github/license/treatwell/immutables-styles.svg?style=for-the-badge)
 
-[![Open source at Treatwell](https://cdn1.treatwell.net/images/view/v2.i1756348.w200.h50.x4965194E.png)](https://treatwell.com/tech)
-
-## Meet our `@Style`s!
+### Meet our `@Style`s!
 
 Usage of immutable data structures for simple objects is generally not a controversial topic. Unfortunately, implementation of this idea in real life code 
 often proves to be quite difficult to properly manage, especially considering the tradeoff between boilerplate, maintainability and usability.
@@ -34,7 +36,9 @@ You will find [all of the styles that we came up with over the years here.](src/
 
 But we understand that this would be a lot to take in randomly, so **here are the two most important** (and recommended for general use) ones to start with:
 
-## [`@ValueObjectStyle`](src/main/java/com/treatwell/immutables/styles/ValueObjectStyle.java)
+___
+
+### [`@ValueObjectStyle`](src/main/java/com/treatwell/immutables/styles/ValueObjectStyle.java)
 
 ##### General characteristics
 - Client API:
@@ -79,6 +83,8 @@ public class PersonController {
     }
 }
 ```
+
+___
 
 ### [`@DefaultStyle`](src/main/java/com/treatwell/immutables/styles/DefaultStyle.java)
 
