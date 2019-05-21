@@ -1,6 +1,6 @@
 <p align="center"><img src="https://cdn1.treatwell.net/images/view/v2.i1756510.w280.h180.x35087788.png" /></p>
 
-## _Treatwell_'s [Immutables](https://immutables.github.io/) styles !
+##### _Treatwell_'s style extensions for the [Immutables](https://immutables.github.io/) library !
 
 ![Maven Central](https://img.shields.io/maven-central/v/com.treatwell/immutables-styles.svg?style=for-the-badge)
 ![License](https://img.shields.io/github/license/treatwell/immutables-styles.svg?style=for-the-badge)
