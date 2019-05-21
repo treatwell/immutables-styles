@@ -1,5 +1,8 @@
 # _Treatwell_'s [Immutables](https://immutables.github.io/) styles
 
+![Maven Central](https://img.shields.io/maven-central/v/com.treatwell/immutables-styles.svg?style=for-the-badge)
+![License](https://img.shields.io/github/license/treatwell/immutables-styles.svg?style=for-the-badge)
+
 [![Open source at Treatwell](https://cdn1.treatwell.net/images/view/v2.i1756348.w200.h50.x4965194E.png)](https://treatwell.com/tech)
 
 ## Meet _Treatwell_'s pre-made [Immutables](https://immutables.github.io/) `@Style`s!
