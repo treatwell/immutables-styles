@@ -6,10 +6,8 @@
 
 ___
 
-<div align="center>
-    <img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.treatwell/immutables-styles.svg?style=for-the-badge">
-    <img alt="License" src="https://img.shields.io/github/license/treatwell/immutables-styles.svg?style=for-the-badge">
-</div>
+![Maven Central](https://img.shields.io/maven-central/v/com.treatwell/immutables-styles.svg?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/treatwell/immutables-styles.svg?style=for-the-badge)
 
 ### Meet our `@Style`s!
 
