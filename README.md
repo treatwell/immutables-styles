@@ -1,7 +1,7 @@
-<p align="center"><img src="https://cdn1.treatwell.net/images/view/v2.i1756510.w280.h180.x35087788.png" /></p>
 <div align="center">
-    <p>Brought to you by</p>
-    <img src="https://cdn1.treatwell.net/images/view/v2.i1756348.w200.h50.x4965194E.png" />
+    <img src="https://cdn1.treatwell.net/images/view/v2.i1756510.w280.h180.x35087788.png" />
+    <p></p>
+    <img style="border-radius: 10%;" src="https://cdn1.treatwell.net/images/view/v2.i1756348.w200.h50.x4965194E.png" />
 </div>
 
 ##### Style extensions for the [Immutables](https://immutables.github.io/) library !
