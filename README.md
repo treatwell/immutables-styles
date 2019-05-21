@@ -5,7 +5,7 @@
 
 [![Open source at Treatwell](https://cdn1.treatwell.net/images/view/v2.i1756348.w200.h50.x4965194E.png)](https://treatwell.com/tech)
 
-## Meet _Treatwell_'s pre-made [Immutables](https://immutables.github.io/) `@Style`s!
+## Meet our `@Style`s!
 
 Usage of immutable data structures for simple objects is generally not a controversial topic. Unfortunately, implementation of this idea in real life code 
 often proves to be quite difficult to properly manage, especially considering the tradeoff between boilerplate, maintainability and usability.
