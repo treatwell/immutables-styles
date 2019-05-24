@@ -75,7 +75,7 @@
 
     <scm>
         <connection>scm:git:https://github.com/treatwell/immutable-styles.git</connection>
-        <developerConnection>scm:git:https://github.com/treatwell/immutable-styles.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:treatwell/immutables-styles.git</developerConnection>
         <url>http://github.com/treatwell/immutable-styles/tree/${project.scm.tag}</url>
         <tag>master</tag>
     </scm>
