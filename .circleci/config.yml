@@ -1,0 +1,36 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: adoptopenjdk/maven-openjdk8:latest
+    working_directory: ~/immutables-styles
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: m2-{{ .Branch }}-{{ checksum "pom.xml" }}
+          paths:
+            - ~/.m2/repository
+
+      - run:
+          name: Build and test
+          command: './scripts/build.sh'
+
+      - save_cache:
+          key: m2-{{ .Branch }}-{{ checksum "pom.xml" }}
+          paths:
+            - ~/.m2/repository
+
+      - run:
+          name: Aggregate test results
+          command: './.circleci/copy_recursive_regex.sh ".*/target/surefire-reports/.*xml" test-results'
+          when: always
+      - run:
+          name: Aggregate artifacts
+          command: './.circleci/copy_recursive_regex.sh ".*/target/.*jar" artifacts'
+          when: always
+
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: artifacts
