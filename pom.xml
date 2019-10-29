@@ -90,7 +90,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <hibernate.jpa21.version>1.0.0.Final</hibernate.jpa21.version>
-        <jackson.version>2.9.9</jackson.version>
+        <jackson.version>2.10.0</jackson.version>
         <immutables.version>2.7.4</immutables.version>
 
         <checkstyle.version>8.18</checkstyle.version>
