@@ -93,7 +93,7 @@
         <jackson.version>2.10.0</jackson.version>
         <immutables.version>2.7.4</immutables.version>
 
-        <checkstyle.version>8.18</checkstyle.version>
+        <checkstyle.version>8.29</checkstyle.version>
         <checkstyle.config-file>checkstyle-8-config.xml</checkstyle.config-file>
 
         <gpg.skip>true</gpg.skip>
