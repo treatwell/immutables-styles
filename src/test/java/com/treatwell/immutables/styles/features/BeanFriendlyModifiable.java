@@ -42,9 +42,9 @@ public class BeanFriendlyModifiable implements ImplementationBehaviorStyleFeatur
         final String value = UUID.randomUUID().toString();
         setter.accept(value);
 
-        assertThat(getter.get()).withFailMessage(
-                "The setter call should have resulted in the getter call working as expected."
-        ).isEqualTo(value);
+        assertThat(getter.get())
+            .withFailMessage("The setter call should have resulted in the getter call working as expected.")
+            .isEqualTo(value);
     }
 
 }

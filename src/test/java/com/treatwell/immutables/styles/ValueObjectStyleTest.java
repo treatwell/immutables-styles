@@ -22,51 +22,51 @@ import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.HAS_P
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.RECOGNIZES_BOOLEAN_GETTERS;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.SERIALIZABLE_BY_JACKSON;
 
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.immutables.value.Value.Immutable;
-import org.junit.runners.Parameterized.Parameters;
 
 import com.treatwell.immutables.styles.features.CanPassNullForOptionalEmptyInBuilder;
 import com.treatwell.immutables.styles.features.StrictBuilder;
 import com.treatwell.immutables.styles.features.StyleFeature;
 
-public class ValueObjectStyleTest extends StyleFeaturesTest {
-
-    @Parameters(name = "{0}")
-    public static Collection<Object[]> expectedFeatures() {
-        return supportsFeatures(
-                HAS_PRIVATE_NO_ARG_CONSTRUCTOR,
-                RECOGNIZES_BOOLEAN_GETTERS,
-                SERIALIZABLE_BY_JACKSON,
-                ABSTRACT_STRIPPING_NAMING_STRATEGY,
-                GENERATED_CLASS_IS_PUBLIC,
-                optionalPassNullFeature(),
-                strictBuilders()
-        );
-    }
+public class ValueObjectStyleTest extends StyleFeaturesTest<ValueObjectStyle, ValueObjectStyleTest.AbstractSomething, Something> {
 
     @Override
-    Class<?> getStyleClass() {
+    protected Class<ValueObjectStyle> getStyleClass() {
         return ValueObjectStyle.class;
     }
 
     @Override
-    Class<?> getStyleAnnotatedClass() {
+    protected Class<AbstractSomething> getAnnotatedClass() {
         return AbstractSomething.class;
     }
 
     @Override
-    Class<?> getGeneratedClass() {
+    protected Class<Something> getGeneratedClass() {
         return Something.class;
+    }
+
+    @Override
+    protected List<StyleFeature> getExpectedStyleFeatures() {
+        return Arrays.asList(
+            HAS_PRIVATE_NO_ARG_CONSTRUCTOR,
+            RECOGNIZES_BOOLEAN_GETTERS,
+            SERIALIZABLE_BY_JACKSON,
+            ABSTRACT_STRIPPING_NAMING_STRATEGY,
+            GENERATED_CLASS_IS_PUBLIC,
+            optionalPassNullFeature(),
+            strictBuilders()
+        );
     }
 
     private static StyleFeature optionalPassNullFeature() {
         final Something.Builder builder = Something.builder().something(true);
         return new CanPassNullForOptionalEmptyInBuilder(
-                builder::optionalString,
-                () -> builder.build().getOptionalString()
+            builder::optionalString,
+            () -> builder.build().getOptionalString()
         );
     }
 

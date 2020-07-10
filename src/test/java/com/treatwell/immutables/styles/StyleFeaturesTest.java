@@ -16,64 +16,35 @@
 
 package com.treatwell.immutables.styles;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
+import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.treatwell.immutables.styles.features.StyleFeature;
 
-@RunWith(Parameterized.class)
-public abstract class StyleFeaturesTest {
-
-    @Parameter(0)
-    public String featureName;
-
-    @Parameter(1)
-    public StyleFeatureCheck featureCheck;
+@TestInstance(Lifecycle.PER_CLASS)
+public abstract class StyleFeaturesTest<STYLE, ANNOTATED, GENERATED extends ANNOTATED> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Before
-    public void beforeEach() {
+    @ParameterizedTest(name = "[{index}] {0}")
+    @ArgumentsSource(StyleFeaturesArgumentProvider.class)
+    public void checkFeature(String featureName, StyleFeature styleFeature, Class<?> style, Class<?> annotated, Class<?> generated) {
         logger.info("Feature: {}", featureName);
+        styleFeature.assertFeature(style, annotated, generated);
     }
 
-    @Test
-    public void checkFeature() {
-        featureCheck.ensureFeature(getStyleClass(), getStyleAnnotatedClass(), getGeneratedClass());
-    }
+    protected abstract Class<STYLE> getStyleClass();
 
-    abstract Class<?> getStyleClass();
+    protected abstract Class<ANNOTATED> getAnnotatedClass();
 
-    abstract Class<?> getStyleAnnotatedClass();
+    protected abstract Class<GENERATED> getGeneratedClass();
 
-    abstract Class<?> getGeneratedClass();
-
-    protected static Set<Object[]> supportsFeatures(StyleFeature... styleFeatures) {
-        return Arrays.stream(styleFeatures).map(styleFeature -> new Object[]{
-            styleFeature.getHumanReadableFeatureName(),
-            (StyleFeatureCheck) styleFeature::assertFeature
-        }).collect(Collectors.toSet());
-    }
-
-    /**
-     * This is merely the equivalent of a type alias to have cleaner definition of this class
-     * Aliases a 3-parameter {@link Consumer}. Think {@link BiConsumer} but for 3 parameters, all {@link Class} instances.
-     */
-    private interface StyleFeatureCheck {
-
-        void ensureFeature(Class<?> styleClass, Class<?> annotated, Class<?> generated);
-
-    }
+    protected abstract List<StyleFeature> getExpectedStyleFeatures();
 
 }

@@ -29,10 +29,9 @@ public class GeneratedClassHasPublicVisibility implements StyleFeature {
 
     @Override
     public void assertFeature(Class<?> style, Class<?> annotated, Class<?> generated) {
-        assertThat(Modifier.isPublic(generated.getModifiers())).withFailMessage(
-                "Expected the generated class %s to have public visibility!",
-                generated.getName()
-        ).isTrue();
+        assertThat(Modifier.isPublic(generated.getModifiers()))
+            .withFailMessage("Expected the generated class %s to have public visibility!", generated.getName())
+            .isTrue();
     }
 
 }
