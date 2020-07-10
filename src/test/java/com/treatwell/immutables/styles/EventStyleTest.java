@@ -21,50 +21,50 @@ import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.GENER
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.HAS_PRIVATE_NO_ARG_CONSTRUCTOR;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.RECOGNIZES_BOOLEAN_GETTERS;
 
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.immutables.value.Value.Immutable;
-import org.junit.runners.Parameterized.Parameters;
 
 import com.treatwell.immutables.styles.features.CanPassNullForOptionalEmptyInBuilder;
 import com.treatwell.immutables.styles.features.StrictBuilder;
 import com.treatwell.immutables.styles.features.StyleFeature;
 
-public class EventStyleTest extends StyleFeaturesTest {
-
-    @Parameters(name = "{0}")
-    public static Collection<Object[]> expectedFeatures() {
-        return supportsFeatures(
-                APPEND_EVENT_NAMING_STRATEGY,
-                HAS_PRIVATE_NO_ARG_CONSTRUCTOR,
-                RECOGNIZES_BOOLEAN_GETTERS,
-                GENERATED_CLASS_IS_PUBLIC,
-                optionalPassNullFeature(),
-                strictBuilders()
-        );
-    }
+public class EventStyleTest extends StyleFeaturesTest<EventStyle, EventStyleTest.TestAction, TestActionEvent> {
 
     @Override
-    Class<?> getStyleClass() {
+    protected Class<EventStyle> getStyleClass() {
         return EventStyle.class;
     }
 
     @Override
-    Class<?> getStyleAnnotatedClass() {
+    protected Class<TestAction> getAnnotatedClass() {
         return TestAction.class;
     }
 
     @Override
-    Class<?> getGeneratedClass() {
+    protected Class<TestActionEvent> getGeneratedClass() {
         return TestActionEvent.class;
+    }
+
+    @Override
+    protected List<StyleFeature> getExpectedStyleFeatures() {
+        return Arrays.asList(
+            APPEND_EVENT_NAMING_STRATEGY,
+            HAS_PRIVATE_NO_ARG_CONSTRUCTOR,
+            RECOGNIZES_BOOLEAN_GETTERS,
+            GENERATED_CLASS_IS_PUBLIC,
+            optionalPassNullFeature(),
+            strictBuilders()
+        );
     }
 
     private static StyleFeature optionalPassNullFeature() {
         final TestActionEvent.Builder builder = TestActionEvent.builder().someFlag(true);
         return new CanPassNullForOptionalEmptyInBuilder(
-                builder::eventOptionalString,
-                () -> builder.build().getEventOptionalString()
+            builder::eventOptionalString,
+            () -> builder.build().getEventOptionalString()
         );
     }
 

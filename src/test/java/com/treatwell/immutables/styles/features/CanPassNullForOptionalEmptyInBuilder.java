@@ -40,9 +40,9 @@ public class CanPassNullForOptionalEmptyInBuilder implements ImplementationBehav
     @Override
     public void additionalCheckWithImplementation() {
         builderSetter.accept(null);
-        assertThat(instanceGetter.get()).withFailMessage(
-                "Giving null as value in builder should have mapped to an empty optional."
-        ).isEmpty();
+        assertThat(instanceGetter.get())
+            .withFailMessage("Giving null as value in builder should have mapped to an empty optional.")
+            .isEmpty();
     }
 
 }

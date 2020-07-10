@@ -34,15 +34,13 @@ public class RecognizesBooleanGetters implements StyleFeature {
     @Override
     public void assertFeature(Class<?> style, Class<?> annotated, Class<?> generated) {
         final Set<Method> expected = readBooleanGetters(annotated);
-        assertThat(expected).withFailMessage(
-                "Tested style has added support for is*-named getter methods, please ensure your annotated test class has at least one."
-        ).isNotEmpty();
+        assertThat(expected)
+            .withFailMessage("Tested style has added support for is*-named getter methods, please ensure your annotated test class has at least one.")
+            .isNotEmpty();
 
         final Set<Method> actual = readBooleanGetters(generated);
 
-        actual.forEach(generatedGetter -> expected.removeIf(
-                annotatedGetter -> annotatedGetter.getName().equals(generatedGetter.getName())
-        ));
+        actual.forEach(generatedGetter -> expected.removeIf(annotatedGetter -> annotatedGetter.getName().equals(generatedGetter.getName())));
 
         assertThat(expected).isEmpty();
     }

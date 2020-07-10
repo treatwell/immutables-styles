@@ -32,22 +32,19 @@ public class PrivateNoArgConstructor implements StyleFeature {
         final boolean annotatedHasConstructor = isNoArgPrivateConstructorFound(annotated);
         final boolean generatedHasConstructor = isNoArgPrivateConstructorFound(generated);
 
-        assertThat(annotatedHasConstructor).withFailMessage(
-                "Did not expect a private no-arg constructor in annotated class (should have been interface!): %s",
-                annotated
-        ).isFalse();
+        assertThat(annotatedHasConstructor)
+            .withFailMessage("Did not expect a private no-arg constructor in annotated class (should have been interface!): %s", annotated)
+            .isFalse();
 
-        assertThat(generatedHasConstructor).withFailMessage(
-                "Did not find expected private no-arg constructor for class %s generated from %s",
-                generated,
-                annotated
-        ).isTrue();
+        assertThat(generatedHasConstructor)
+            .withFailMessage("Did not find expected private no-arg constructor for class %s generated from %s", generated, annotated)
+            .isTrue();
     }
 
     private boolean isNoArgPrivateConstructorFound(Class<?> generated) {
         return stream(generated.getDeclaredConstructors())
-                .filter(constructor -> isPrivate(constructor.getModifiers()))
-                .anyMatch(constructor -> constructor.getParameterCount() == 0);
+            .filter(constructor -> isPrivate(constructor.getModifiers()))
+            .anyMatch(constructor -> constructor.getParameterCount() == 0);
     }
 
 }

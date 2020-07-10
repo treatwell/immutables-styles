@@ -29,9 +29,9 @@ public class SerializableByJackson implements StyleFeature {
 
     @Override
     public void assertFeature(Class<?> style, Class<?> annotated, Class<?> generated) {
-        assertThat(style.getAnnotation(JsonSerialize.class)).withFailMessage(
-                "Styles that guarantee serializability by Jackson must be annotated with @JsonSerialize!"
-        ).isNotNull();
+        assertThat(style.getAnnotation(JsonSerialize.class))
+            .withFailMessage("Styles that guarantee serializability by Jackson must be annotated with @JsonSerialize!")
+            .isNotNull();
     }
 
 }

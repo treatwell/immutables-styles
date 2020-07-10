@@ -20,46 +20,47 @@ import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.DEFAU
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.RECOGNIZES_BOOLEAN_GETTERS;
 import static com.treatwell.immutables.styles.features.SimpleStyleFeatures.SERIALIZABLE_BY_JACKSON;
 
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.List;
 
 import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Modifiable;
-import org.junit.runners.Parameterized.Parameters;
 
 import com.treatwell.immutables.styles.features.BeanFriendlyModifiable;
+import com.treatwell.immutables.styles.features.StyleFeature;
 
-public class JavaBeanStyleTest extends StyleFeaturesTest {
-
-    @Parameters(name = "{0}")
-    public static Collection<Object[]> expectedFeatures() {
-        return supportsFeatures(
-                SERIALIZABLE_BY_JACKSON,
-                RECOGNIZES_BOOLEAN_GETTERS,
-                DEFAULT_IMMUTABLES_NAMING_STRATEGY,
-                beanFriendlyModifiableClass()
-        );
-    }
+public class JavaBeanStyleTest extends StyleFeaturesTest<JavaBeanStyle, JavaBeanStyleTest.MyBean, ImmutableMyBean> {
 
     @Override
-    Class<?> getStyleClass() {
+    protected Class<JavaBeanStyle> getStyleClass() {
         return JavaBeanStyle.class;
     }
 
     @Override
-    Class<?> getStyleAnnotatedClass() {
+    protected Class<MyBean> getAnnotatedClass() {
         return MyBean.class;
     }
 
     @Override
-    Class<?> getGeneratedClass() {
+    protected Class<ImmutableMyBean> getGeneratedClass() {
         return ImmutableMyBean.class;
+    }
+
+    @Override
+    protected List<StyleFeature> getExpectedStyleFeatures() {
+        return Arrays.asList(
+            SERIALIZABLE_BY_JACKSON,
+            RECOGNIZES_BOOLEAN_GETTERS,
+            DEFAULT_IMMUTABLES_NAMING_STRATEGY,
+            beanFriendlyModifiableClass()
+        );
     }
 
     private static BeanFriendlyModifiable beanFriendlyModifiableClass() {
         final ModifiableMyBean modifiable = ModifiableMyBean.create();
         return new BeanFriendlyModifiable(
-                modifiable::setValue,
-                modifiable::getValue
+            modifiable::setValue,
+            modifiable::getValue
         );
     }
 
