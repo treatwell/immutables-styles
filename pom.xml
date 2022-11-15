@@ -108,7 +108,7 @@
         <!-- Dependencies -->
         <immutables.version>2.7.4</immutables.version>
 
-        <jackson.version>2.10.0</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <hibernate.jpa21.version>1.0.0.Final</hibernate.jpa21.version>
 
         <slf4j-api.version>1.7.30</slf4j-api.version>
